@@ -1,1 +1,21 @@
-<p>login works!</p>
+<h1>Hero Form</h1>
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <div class="form-group">
+    <label for="name">用户账号</label>
+    <input type="text" class="form-control" id="username" placeholder="用户账号" required [(ngModel)]="model.username"
+      name="username" #name="ngModel">
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      账号不用为空
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">密码</label>
+    <input type="password" class="form-control" id="password" required [(ngModel)]="model.password" placeholder=""
+      name="password" #password="ngModel">
+    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+      密码不用为空
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="!form.form.valid">登录</button>
+</form>
