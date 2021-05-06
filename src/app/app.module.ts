@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './layout/main/header/header.component';
 import { ItemRenderComponent } from './pages/home/item-render/item-render.component';
 import { DetailComponent } from './pages/detail/detail.component';
+import {AdminModule} from './pages/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DetailComponent } from './pages/detail/detail.component';
     BrowserModule,
     AppRoutingModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
