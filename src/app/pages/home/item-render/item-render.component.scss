@@ -1,0 +1,84 @@
+@import "../../../../styles";
+.headerWrapper {
+  @include flex;
+  @include justify-between;
+  @include items-center;
+  @include w-full;
+  @include my-1;
+  .actionWrapper {
+    button:last-child {
+      @include ml-5;
+    }
+    button:last-child {
+      @include text-white;
+      background: $themeColor;
+    }
+    button {
+      cursor: pointer;
+      @include h-6;
+      @include w-21;
+      @include border-0;
+      @include rounded;
+      @include text-gray-500;
+      >div {
+        align-items: center;
+        @include justify-center;
+        @include flex;
+      }
+    }
+  }
+  .title {
+    @include p-0_5;
+    @include text-white;
+    @include text-3;
+    @include py-0_5;
+    @include px-2;
+  }
+}
+
+.contentWrapper {
+  @include flex;
+  @include w-full;
+  @include h-50;
+  @include py-1;
+  border-bottom: solid px2rem(1);
+  @include border-gray-200;
+  $divNo1Width:30%;
+  $divNo2Width:30%;
+  $divNo3Width: 100% - $divNo1Width - $divNo2Width;
+  div:first-child{
+    width: $divNo1Width;
+    >img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  div:nth-child(2){
+    width: $divNo2Width;
+    @include text-gray-500;
+    @include px-5;
+    box-sizing: border-box;
+    position: relative;
+    div:first-child {
+      @include h-full;
+      @include w-full;
+    }
+    .showDetail {
+      position: absolute;
+      height: px2rem(8);
+      @include w-15;
+      background: #8D94EC;
+      bottom: 0;
+      right: px2rem(80);
+    }
+  }
+  div:nth-child(3){
+    width: $divNo3Width;
+    @include flex;
+    @include h-full;
+    @include justify-between;
+  }
+  .desc {
+    line-height: px2rem(60);
+  }
+}

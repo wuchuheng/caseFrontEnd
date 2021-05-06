@@ -1,0 +1,9 @@
+@import "../../../styles";
+.content {
+  @include w-full;
+  @include flex;
+  @include justify-center;
+  > div {
+    width: $contentWidth;
+  }
+}

@@ -1,0 +1,39 @@
+@import "../../../styles";
+.main {
+  margin-top: px2rem(30);
+  .headerWrapper {
+    @include flex;
+    @include w-full;
+    >img {
+      @include h-20;
+      @include w-20;
+    }
+    >div {
+      @include border-box;
+      @include ml-2;
+      @include flex;
+      @include flex-col;
+      >div:last-child { margin-top: px2rem(30); }
+
+    }
+    .titleWrapper {
+      @include flex;
+      >div:last-child {
+        color: $themeColor;
+        margin-left: px2rem(30);
+      }
+      >div:first-child {
+        font-weight: 900;
+      }
+    }
+  }
+  .desc {
+    line-height: px2rem(70);
+    @include text-gray-500;
+  }
+  >img {
+    margin-top: px2rem(30);
+    @include w-full;
+    @include h-full;
+  }
+}

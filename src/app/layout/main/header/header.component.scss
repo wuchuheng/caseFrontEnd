@@ -1,0 +1,27 @@
+@import "../../../../styles";
+.main {
+  background: $themeColor;
+  @include flex;
+  @include w-full;
+  @include h-14;
+  @include justify-center;
+  .center {
+    width: $contentWidth;
+    @include py-1;
+    @include flex;
+    @include flex-col;
+    @include justify-between;
+    @include border-box;
+    .nav {
+      @include flex;
+      @include w-full;
+      > div {
+        @include w-40;
+        @include text-white;
+      }
+    }
+    > img {
+      @include w-25;
+    }
+  }
+}

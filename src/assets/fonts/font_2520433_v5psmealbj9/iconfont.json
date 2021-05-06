@@ -1,0 +1,16 @@
+{
+  "id": "2520433",
+  "name": "案例网页",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4579862",
+      "name": "right",
+      "font_class": "right",
+      "unicode": "e955",
+      "unicode_decimal": 59733
+    }
+  ]
+}
