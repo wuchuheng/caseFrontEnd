@@ -1,27 +1,23 @@
-@import "../../../../styles";
 .main {
-  background: $themeColor;
-  @include flex;
-  @include w-full;
-  @include h-14;
-  @include justify-center;
+  @apply bg-primay;
+  @apply flex justify-center;
+  @apply w-full;
+  @apply h-14;
   .center {
-    width: $contentWidth;
-    @include py-1;
-    @include flex;
-    @include flex-col;
-    @include justify-between;
-    @include border-box;
+    @apply w-content;
+    @apply p-1;
+    @apply flex flex-col justify-between;
+    @apply box-border;
     .nav {
-      @include flex;
-      @include w-full;
+      @apply flex;
+      @apply w-full;
       > div {
-        @include w-40;
-        @include text-white;
+        @apply w-40;
+        @apply text-white;
       }
     }
     > img {
-      @include w-25;
+      @apply w-28;
     }
   }
 }

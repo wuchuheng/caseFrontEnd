@@ -1,39 +1,38 @@
-@import "../../../styles";
 .main {
-  margin-top: px2rem(30);
+  @apply mt-16;
   .headerWrapper {
-    @include flex;
-    @include w-full;
+    @apply flex;
+    @apply w-full;
     >img {
-      @include h-20;
-      @include w-20;
+      @apply h-20;
+      @apply w-20;
     }
     >div {
-      @include border-box;
-      @include ml-2;
-      @include flex;
-      @include flex-col;
-      >div:last-child { margin-top: px2rem(30); }
+      @apply box-border;
+      @apply ml-2;
+      @apply flex flex-col;
+      >div:last-child {
+        @apply mt-20;
+      }
 
     }
     .titleWrapper {
-      @include flex;
+      @apply flex;
       >div:last-child {
-        color: $themeColor;
-        margin-left: px2rem(30);
+        @apply text-primay;
+        @apply ml-20;
       }
       >div:first-child {
-        font-weight: 900;
+        @apply font-black;
       }
     }
   }
   .desc {
-    line-height: px2rem(70);
-    @include text-gray-500;
+    @apply leading-10;
+    @apply text-gray-500;
   }
   >img {
-    margin-top: px2rem(30);
-    @include w-full;
-    @include h-full;
+    @apply mt-20;
+    @apply w-full h-full;
   }
 }

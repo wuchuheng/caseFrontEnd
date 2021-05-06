@@ -1,48 +1,45 @@
-@import "../../../../styles";
 .headerWrapper {
-  @include flex;
-  @include justify-between;
-  @include items-center;
-  @include w-full;
-  @include my-1;
+  @apply flex justify-between items-center;
+  @apply w-full;
+  @apply my-1;
   .actionWrapper {
     button:last-child {
-      @include ml-5;
+      @apply ml-5;
     }
     button:last-child {
-      @include text-white;
-      background: $themeColor;
+      @apply text-white;
+      @apply bg-primay;
     }
     button {
       cursor: pointer;
-      @include h-6;
-      @include w-21;
-      @include border-0;
-      @include rounded;
-      @include text-gray-500;
+      @apply h-6 w-20;
+      @apply border-0;
+      @apply rounded;
+      @apply text-gray-500;
       >div {
         align-items: center;
-        @include justify-center;
-        @include flex;
+        @apply justify-center;
+        @apply flex;
       }
     }
   }
   .title {
-    @include p-0_5;
-    @include text-white;
-    @include text-3;
-    @include py-0_5;
-    @include px-2;
+    @apply p-2;
+    @apply bg-primay;
+    @apply text-white;
+    @apply text-sm;
+    @apply py-4 px-2;
   }
 }
 
 .contentWrapper {
-  @include flex;
-  @include w-full;
-  @include h-50;
-  @include py-1;
-  border-bottom: solid px2rem(1);
-  @include border-gray-200;
+  @apply flex;
+  @apply w-full h-52;
+  @apply py-1;
+  @apply border-2 border-solid border-gray-200;
+  border-left: none;
+  border-right: none;
+  border-top: none;
   $divNo1Width:30%;
   $divNo2Width:30%;
   $divNo3Width: 100% - $divNo1Width - $divNo2Width;
@@ -55,30 +52,28 @@
   }
   div:nth-child(2){
     width: $divNo2Width;
-    @include text-gray-500;
-    @include px-5;
+    @apply text-gray-500;
+    @apply px-5;
     box-sizing: border-box;
     position: relative;
     div:first-child {
-      @include h-full;
-      @include w-full;
+      @apply h-full w-full;
     }
     .showDetail {
       position: absolute;
-      height: px2rem(8);
-      @include w-15;
+      @apply h-1 w-16;
       background: #8D94EC;
       bottom: 0;
-      right: px2rem(80);
+      @apply right-0;
     }
   }
   div:nth-child(3){
     width: $divNo3Width;
-    @include flex;
-    @include h-full;
-    @include justify-between;
+    @apply flex justify-between;
+    @apply h-full;
   }
   .desc {
-    line-height: px2rem(60);
+    @apply leading-10;
+    @apply overflow-ellipsis overflow-hidden;
   }
 }

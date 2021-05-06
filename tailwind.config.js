@@ -12,9 +12,15 @@ module.exports = {
     },
     darkMode: 'class', // or 'media' or 'class'
     theme: {
-      backgroundColor: them => ({...them}),
-      textColor: theme => theme('colors'),
-      extend: {},
+      extend: {
+        colors: {
+          primay: '#415DFB'
+        },
+        width: {
+          'content': '70%',
+        }
+        
+      },
     },
     variants: {
       extend: {},
