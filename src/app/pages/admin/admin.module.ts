@@ -15,7 +15,8 @@ import { NgZorroAntdModule } from './ng-zorro-antd.module';
     CommonModule,
     AdminRoutingModule,
     NgZorroAntdModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

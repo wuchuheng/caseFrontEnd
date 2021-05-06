@@ -1,15 +1,51 @@
-.login-form {
-    max-width: 300px;
+.header {
+    @apply p-6;
+    @apply shadow-lg;
+}
+.formWrapper {
+    @apply mt-80;
+    @apply flex justify-center items-center flex-col;
+    >h1 {
+        @apply text-3xl font-medium;
+        @apply mb-10;
+    }
+    >form {
+        @apply w-80
+        grid grid-cols-1 gap-6
+        ;
+    }
 }
 
-.login-form-margin {
-    margin-bottom: 16px;
+.inputItem {
+    @apply flex;
+    >label { 
+        @apply w-20 m-auto; 
+    }
+    >div {
+        @apply flex-1;
+        >input {
+            @apply w-full h-8;
+            &:focus {
+            @apply border-red-500;
+            border-right-width: 1px!important;
+            outline: 0;
+            box-shadow: 0 0 0 2px rgb(255 77 79 / 20%);
+            }
+        }
+        // 错误提示
+        >div {
+            @apply text-red-500 text-sm;
+        }
+        .inputError {
+            @apply border-solid border-red-500 border;
+        }
+    }
 }
 
-.login-form-forgot {
-    float: right;
-}
-
-.login-form-button {
-    width: 100%;
-}
+// .ng-valid[required], .ng-valid.required  {
+//     border-left: 5px solid #42A948; /* green */
+//   }
+  
+//   .ng-invalid:not(form)  {
+//     border-left: 5px solid #a94442; /* red */
+//   }

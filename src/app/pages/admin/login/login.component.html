@@ -1,28 +1,46 @@
-  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your username!">
-        <nz-input-group nzPrefixIcon="user">
-          <input type="text" nz-input formControlName="userName" placeholder="Username" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your Password!">
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input formControlName="password" placeholder="Password" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <div nz-row class="login-form-margin">
-      <div nz-col [nzSpan]="12">
-        <label nz-checkbox formControlName="remember">
-          <span>Remember me</span>
-        </label>
-      </div>
-      <div nz-col [nzSpan]="12">
-        <a class="login-form-forgot">Forgot password</a>
+<div class="header">案例分发管理后台</div>
+<div class="formWrapper">
+  <h1>登录</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="inputItem">
+      <label for="username">账号:</label>
+      <div>
+        <input id="username" type="text" formControlName="username"
+          [class.inputError]="username.invalid && (username.dirty || username.touched)"
+        />
+        <div *ngIf="username.invalid && (username.dirty || username.touched)">
+          <div *ngIf="username.errors?.required">
+            账号不能为空
+          </div>
+          <div *ngIf="username.errors?.minlength">账号不能小于4位</div>
+        </div>
       </div>
     </div>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
-    Or <a> register now! </a>
+
+    <div class="inputItem">
+      <label for="password">密码:</label>
+      <div>
+        <input id="password" type="password" formControlName="password" 
+          [class.inputError]="password.invalid && (password.dirty || password.touched)"
+        />
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.errors?.required">
+            密码不能为空
+          </div>
+          <div *ngIf="password.errors?.minlength">密码不能小于4位</div>
+        </div>
+      </div>
+    </div>
+
+  
+    <button 
+      nz-button nzType="primary" 
+      type="submit"
+      [disabled]="form.invalid"
+      class="w-full"
+      >
+      登录
+    </button>
+
   </form>
+</div>

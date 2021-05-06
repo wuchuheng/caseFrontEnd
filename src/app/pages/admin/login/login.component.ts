@@ -1,33 +1,43 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-type ModelType = {
+type AccountModelType = {
   username: string
   password: string
 }
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  validateForm!: FormGroup;
+  form = new FormGroup({
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ])
+  })
+  ngOnInit(): void {}
 
-  submitForm(): void {
-    // tslint:disable-next-line: forin
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
-    }
+  get username(): AbstractControl
+  {
+    return this.form.get('username') as AbstractControl
   }
 
-  constructor(private fb: FormBuilder) {}
+  get password(): AbstractControl
+  {
+    return this.form.get('password') as AbstractControl
+  }
 
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
-    });
+  onSubmit(): void
+  {
+   console.log(this.form.valid)
+    // this.form.setValue(this.form.value)
   }
 }
