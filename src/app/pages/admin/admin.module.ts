@@ -5,11 +5,13 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from './ng-zorro-antd.module';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { GraphqlService } from 'src/app/services/graphql/graphql.service';
 import { LoginService } from 'src/app/services/graphql/login/login.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {Router} from '@angular/router';
 
 type AccountModelType = {
   username: string
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     public graphql: GraphqlService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private router: Router
   ) {
    }
   ngOnInit(): void {
@@ -52,7 +54,7 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         this.message.create('success', '登录成功')
         setTimeout(() => {
-          console.log('redirect home page whithin admin')
+          this.router.navigateByUrl('/admin/home')
         }, 1000)
       }, err => {
         console.log(err)
