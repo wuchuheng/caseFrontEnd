@@ -11,6 +11,7 @@ import { HeaderComponent } from './layout/main/header/header.component';
 import { ItemRenderComponent } from './pages/home/item-render/item-render.component';
 import { DetailComponent } from './pages/detail/detail.component';
 import {AdminModule} from './pages/admin/admin.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {AdminModule} from './pages/admin/admin.module';
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
-    AdminModule
+    AdminModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

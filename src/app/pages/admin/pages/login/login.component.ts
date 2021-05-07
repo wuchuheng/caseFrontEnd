@@ -1,6 +1,9 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { GraphqlService } from 'src/app/services/graphql/graphql.service';
+import { LoginService } from 'src/app/services/graphql/login/login.service';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 type AccountModelType = {
   username: string
@@ -23,7 +26,14 @@ export class LoginComponent implements OnInit {
       Validators.minLength(4),
     ])
   })
-  ngOnInit(): void {}
+  constructor(
+    private loginService: LoginService,
+    public graphql: GraphqlService,
+    private message: NzMessageService
+  ) {
+   }
+  ngOnInit(): void {
+  }
 
   get username(): AbstractControl
   {
@@ -37,6 +47,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void
   {
-   console.log(this.form.value)
+    this.loginService
+      .login(this.form.value)
+      .subscribe(res => {
+        this.message.create('success', '登录成功')
+        setTimeout(() => {
+          console.log('redirect home page whithin admin')
+        }, 1000)
+      }, err => {
+        console.log(err)
+      })
   }
 }
