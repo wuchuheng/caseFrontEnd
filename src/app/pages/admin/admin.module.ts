@@ -6,12 +6,22 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from './ng-zorro-antd.module';
 import { HomeComponent } from './pages/home/home.component';
+import { MainComponent } from './layout/main/main.component';
+import { CollapIconComponent } from './icons/collap-icon/collap-icon.component';
+import { MenuUnfoldIconComponent } from './icons/menu-unfold-icon/menu-unfold-icon.component';
+import { BreadcrumbComponent } from './layout/main/breadcrumb/breadcrumb.component';
+import { AddComponent } from './pages/login/add/add.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    MainComponent,
+    CollapIconComponent,
+    MenuUnfoldIconComponent,
+    BreadcrumbComponent,
+    AddComponent
   ],
   imports: [
     CommonModule,

@@ -19,7 +19,6 @@ module.exports = {
         width: {
           'content': '70%',
         }
-        
       },
     },
     variants: {

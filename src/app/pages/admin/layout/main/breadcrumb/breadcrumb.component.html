@@ -1,0 +1,11 @@
+<div class="main">
+    <div class="breadcrumb">
+        <div><span>首页</span></div>
+        <div><span>列表</span></div>
+        <div><span>详情</span></div>
+    </div>
+    <div class="title" *ngIf="title">
+        {{ title }}
+    </div>
+  <ng-content></ng-content>
+</div>

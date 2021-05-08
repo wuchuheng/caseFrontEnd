@@ -1593,6 +1593,13 @@
   dependencies:
     tslib "^2.1.0"
 
+"@wuchuhengtools/helper@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@wuchuhengtools/helper/-/helper-1.0.2.tgz#34b28afd6a0b1dc13b9333ef98db3e58bd6a6670"
+  integrity sha512-mEJ4xK5XgQHJt/xm6wo4RiSd3WF/CENLs8IkwvQ6QfEpdltOQDbUUFyv3ZrXHWgyLVQ6wUmTPYczhEbr4whv7Q==
+  dependencies:
+    types "*"
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -8731,6 +8738,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+types@*:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/types/-/types-0.1.1.tgz#860c6859d11366293f835d8c95aebcf95029838e"
+  integrity sha1-hgxoWdETZik/g12Mla68+VApg44=
 
 typescript@4.1.5, typescript@~4.1.5:
   version "4.1.5"

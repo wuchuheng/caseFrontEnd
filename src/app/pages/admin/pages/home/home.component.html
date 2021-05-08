@@ -1,1 +1,48 @@
-<p>home works!</p>
+<app-breadcrumb [title]="'我的应用'">
+  <div class="searchWrapper">
+  </div>
+</app-breadcrumb>
+<div class="contentWrapper">
+  <div class="panel">
+    <div>
+      <div>全部应用</div>
+      <div>100</div>
+    </div>
+    <div>
+      <div>安卓应用</div>
+      <div>100</div>
+    </div>
+    <div>
+      <div>苹果应用</div>
+      <div>100</div>
+    </div>
+  </div>
+  <div class='content'>
+    <div class='header'>
+      <div>应用列表</div>
+      <div>
+        <nz-radio-group [(ngModel)]="size">
+          <label nz-radio-button nzValue="large">全部</label>
+          <label nz-radio-button nzValue="default">安卓</label>
+          <label nz-radio-button nzValue="small">苹果</label>
+        </nz-radio-group>
+        <form nz-form [nzLayout]="'inline'" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="请输入应用名称">
+              <nz-input-group nzPrefixIcon="user">
+                <input formControlName="appName" nz-input placeholder="请输入应用名称" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button nzType="primary" [disabled]="!searchForm.valid">搜索</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+    </div>
+    <app-add></app-add>
+    <div>3</div>
+  </div>
+</div>
