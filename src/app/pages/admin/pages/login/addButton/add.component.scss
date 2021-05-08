@@ -1,0 +1,17 @@
+.add{
+    @apply w-full;
+}
+input[type=file] {
+  display: none;
+}
+
+.dialogWrapper {
+  @apply w-full;
+  .imgWrapper {
+     @apply w-full flex justify-center ;
+    >img {
+      @apply w-3/4;
+    }
+  }
+
+}

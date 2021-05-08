@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
 import {UploadService} from '../../../../../services/upload/upload.service';
 import {HttpEventType} from '@angular/common/http';
 
@@ -15,8 +14,7 @@ export class AddComponent implements OnInit {
     isUpload: false,
     progress: 0
   }
-
-  isVisibleMiddle = true
+  isVisitedForm = true
 
   constructor(
     private uploadService: UploadService
@@ -41,21 +39,24 @@ export class AddComponent implements OnInit {
     // @ts-ignore
     const file = this.input.nativeElement.files[0] as File
     this.uploadService.singleUpload(file).subscribe(event => {
-      console.log(event)
       switch (event.type) {
         case HttpEventType.Sent:
-          this.uploadReport.isUpload = true
-          this.isVisibleMiddle = true
+          this.uploadReport = {
+            isUpload: true,
+            progress: 0
+          }
           break;
         case HttpEventType.UploadProgress:
           const total = event.total || 0
           this.uploadReport.progress = Math.round(100 * (event.loaded / total));
           break;
-        case HttpEventType.DownloadProgress:
+        // 上传成功
+        case HttpEventType.Response:
           this.uploadReport = {
             isUpload: false,
             progress: 0
           }
+          console.log(event.body)
           break;
       }
     })

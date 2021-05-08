@@ -17,6 +17,6 @@ declare namespace GrapqlType {
     version: string
     icon: string
     label: string
-    path: string
+    url: string
   }
 }

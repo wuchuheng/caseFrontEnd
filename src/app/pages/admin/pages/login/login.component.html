@@ -20,7 +20,7 @@
     <div class="inputItem">
       <label for="password">密码:</label>
       <div>
-        <input id="password" type="password" formControlName="password" 
+        <input id="password" type="password" formControlName="password"
           [class.inputError]="password.invalid && (password.dirty || password.touched)"
         />
         <div *ngIf="password.invalid && (password.dirty || password.touched)">
@@ -31,9 +31,9 @@
         </div>
       </div>
     </div>
-  
-    <button 
-      nz-button nzType="primary" 
+
+    <button
+      nz-button nzType="primary"
       type="submit"
       [disabled]="form.invalid"
       [nzLoading]="graphql.loading"

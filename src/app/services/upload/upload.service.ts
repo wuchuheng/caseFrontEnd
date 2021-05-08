@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpEventType, HttpProgressEvent} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpEventType, HttpProgressEvent, HttpResponse} from '@angular/common/http';
 import {environment} from '../../../environments/environment.prod';
 import {Observable} from 'rxjs';
+import UploadFileResType = GrapqlType.UploadFileResType;
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UploadService {
     private http: HttpClient
   ) { }
 
-  singleUpload(file: File): Observable<HttpEvent<HttpProgressEvent>>
+  singleUpload(file: File): Observable<HttpEvent<HttpProgressEvent | HttpResponse<UploadFileResType>>>
   {
     const formData = new FormData()
     formData.append('file', file)

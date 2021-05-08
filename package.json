@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~11.2.12",
     "@angular/platform-browser-dynamic": "~11.2.12",
     "@angular/router": "~11.2.12",
+    "@ant-design/icons-angular": "^11.0.1",
     "@apollo/client": "^3.0.0",
     "@ngneat/tailwind": "^7.0.3",
     "@wuchuhengtools/helper": "^1.0.2",
