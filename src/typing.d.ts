@@ -15,8 +15,12 @@ declare namespace GrapqlType {
     id: number
     size: number
     version: string
-    icon: string
+    iconUrl: string
+    iconFileId: number
     label: string
-    url: string
   }
+  export type CategoriesType = {
+    id: number
+    name: string
+  }[]
 }

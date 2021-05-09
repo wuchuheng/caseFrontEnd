@@ -1,0 +1,23 @@
+<div class="clearfix">
+  <nz-upload
+    [nzAction]="actionUrl"
+    nzListType="picture-card"
+    [(nzFileList)]="fileList"
+    [nzMultiple]="true"
+    [nzShowButton]="fileList.length < 8"
+    [nzPreview]="handlePreview"
+    [nzFileType]="'image/png,image/jpeg,image/gif'"
+    [nzBeforeUpload]="onBeforeUpload"
+    (nzChange)="handleChange($event)"
+  >
+    <div>
+<!--      <i nz-icon nzType="plus"></i>-->
+      <div style="margin-top: 8px">添加</div>
+    </div>
+  </nz-upload>
+  <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible = false">
+    <ng-template #modalContent>
+      <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+    </ng-template>
+  </nz-modal>
+</div>

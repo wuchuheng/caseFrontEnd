@@ -12,7 +12,6 @@ export class UploadService {
   constructor(
     private apollo: Apollo,
     private graphql: GraphqlService,
-    private auth: AuthService
   ) { }
 
   singleUpload(file: File): Observable<number>

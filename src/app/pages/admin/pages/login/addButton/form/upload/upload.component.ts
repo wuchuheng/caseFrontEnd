@@ -3,13 +3,18 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { Observable, Observer } from 'rxjs';
 
+
+type EmitType = {
+  id: number
+  url: string
+}
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
-  @Output() onChange: EventEmitter<string> = new EventEmitter<string>()
+  @Output() onChange: EventEmitter<EmitType> = new EventEmitter<EmitType>()
   @Input() avatarUrl!: string
 
   loading = false;
@@ -53,8 +58,8 @@ export class UploadComponent implements OnInit {
         // Get this url from response in real world.
         this.getBase64(info.file!.originFileObj!, (img: string) => {
           this.loading = false;
-          const url = info.file.response.url as string
-          this.onChange.emit(url)
+          const res = info.file.response as EmitType
+          this.onChange.emit(res)
           // this.avatarUrl = img;
         });
         break;

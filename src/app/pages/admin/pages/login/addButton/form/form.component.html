@@ -21,11 +21,12 @@
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="icon">应用图标</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
          <app-upload
-           [avatarUrl]="validateForm.value.icon"
+           [avatarUrl]="packageInfo.iconUrl"
            (onChange)="onUploadIcon($event)"
          ></app-upload>
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="label">应用名称</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
@@ -33,6 +34,39 @@
       </nz-form-control>
     </nz-form-item>
 
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="category">分类</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24"
+                       nzWarningTip="分类不能为空"
+      >
+        <nz-select
+          formControlName="category" id="category"
+        >
+          <nz-option
+            *ngFor="let option of options"
+            [nzValue]="option.id"
+            [nzLabel]="option.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="icon">封面</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <app-upload
+          [avatarUrl]="banner.url"
+          (onChange)="onUploadCover($event)"
+        ></app-upload>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="icon">示例图</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <app-multi-upload></app-multi-upload>
+      </nz-form-control>
+    </nz-form-item>
 
     <nz-form-item nz-row class="register-area">
       <nz-form-control [nzSpan]="14" [nzOffset]="6">

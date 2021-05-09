@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import UploadFileResType = GrapqlType.UploadFileResType;
+import {CategoryService} from '../../../../../../services/graphql/category/category.service';
+import Observable from 'zen-observable';
 
+type ImgInfoType = {id: number; url: string}
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+  options: GrapqlType.CategoriesType = []
   validateForm!: FormGroup;
   captchaTooltipIcon: NzFormTooltipIcon = {
     type: 'info-circle',
@@ -16,13 +20,15 @@ export class FormComponent implements OnInit {
   };
 
   packageInfo: UploadFileResType = {
-    icon: 'http://127.0.0.1:3000/icons/2021-05-08/1620461661063.png',
-    id: 45,
-    label: 'IMDemo',
+    id: 1,
     size: 96806859,
-    url: 'http://127.0.0.1:3000/apk/2021-05-08/1620461660782-7850ce6da28e1644b9a41e2ff5032f0c.apk',
-    version: '1.0.0'
+    version: '1.0.0',
+    label: 'IMDemo',
+    iconUrl: 'http://127.0.0.1:3000/icons/2021-05-09/1620566448244.png',
+    iconFileId: 2,
   }
+
+  banner: ImgInfoType = {id: 0, url: ''}
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
@@ -49,27 +55,52 @@ export class FormComponent implements OnInit {
     e.preventDefault();
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private categoriesService: CategoryService
+  ) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       id: [this.packageInfo.id],
       size: [this.packageInfo.size],
-      icon: [this.packageInfo.icon, Validators.required],
+      iconFileId: [this.packageInfo.iconFileId, Validators.required],
       label: [this.packageInfo.label, Validators.required],
       version: [this.packageInfo.version],
+      category: [null, Validators.required],
+      coverFileId: [null, Validators.required],
+      bannerFileIds: [null, Validators.required]
     });
+    this.categoriesService.getCategories().subscribe(res =>  {
+        this.options = res.categories
+      }
+    )
   }
   get id(): AbstractControl
   {
     return this.validateForm.get('id') as AbstractControl
   }
 
-  onUploadIcon(e: string): void
+  onUploadIcon(e: ImgInfoType): void
   {
     this.validateForm.setValue({
       ...this.validateForm.value,
-      icon: e
+      iconFileId: e.id
     })
+    this.packageInfo = {
+      ...this.packageInfo,
+      iconUrl: e.url
+    }
+  }
+
+  onUploadCover(e: ImgInfoType): void
+  {
+    this.validateForm.setValue({
+      ...this.validateForm.value,
+      coverFileId: e.id
+    })
+    this.banner = {
+      ...e
+    }
   }
 }

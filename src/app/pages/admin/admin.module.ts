@@ -13,6 +13,7 @@ import { BreadcrumbComponent } from './layout/main/breadcrumb/breadcrumb.compone
 import { AddComponent } from './pages/login/addButton/add.component';
 import { FormComponent } from './pages/login/addButton/form/form.component';
 import { UploadComponent } from './pages/login/addButton/form/upload/upload.component';
+import { MultiUploadComponent } from './pages/login/addButton/form/multi-upload/multi-upload.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { UploadComponent } from './pages/login/addButton/form/upload/upload.comp
     BreadcrumbComponent,
     AddComponent,
     FormComponent,
-    UploadComponent
+    UploadComponent,
+    MultiUploadComponent
   ],
   imports: [
     CommonModule,

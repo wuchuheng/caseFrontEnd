@@ -38,4 +38,22 @@ export class GraphqlService {
         })
     })
   }
+
+  query<T>(graphql: DocumentNode, variables: Record<string, any> = {}): Observable<T>
+  {
+    this.loading = true
+    return new Observable<T>(ob => {
+      this.apollo.query<T>({
+        query: graphql,
+        variables
+      }).subscribe(({data}) => {
+        this.loading = false
+        ob.next(data as T)
+      }, err => {
+        this.message.create('error', err.message)
+        this.loading = false
+        ob.error(err)
+      })
+    })
+  }
 }
