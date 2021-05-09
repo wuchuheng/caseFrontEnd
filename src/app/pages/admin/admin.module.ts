@@ -14,7 +14,9 @@ import { AddComponent } from './pages/login/addButton/add.component';
 import { FormComponent } from './pages/login/addButton/form/form.component';
 import { UploadComponent } from './pages/login/addButton/form/upload/upload.component';
 import { MultiUploadComponent } from './pages/login/addButton/form/multi-upload/multi-upload.component';
-
+import { AccountBookFill, AlertFill, AlertOutline, DownOutline, UserOutline } from '@ant-design/icons-angular/icons';
+import { IconDefinition } from '@ant-design/icons-angular';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   declarations: [
