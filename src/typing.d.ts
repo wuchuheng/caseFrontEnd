@@ -29,6 +29,31 @@ declare namespace GrapqlType {
   export type CreateCaseResType = {
     create: number
   }
+  type FileType = {
+    id: number
+    url: string
+  }
+  export type CaseParamsType = {
+    page: number
+    pageSize: number
+  }
+  export type CaseResType = {
+    total: number
+    items: {
+      id: number
+      uid: number
+      label: string
+      version: string
+      icon: FileType
+      type: 'android' | 'ios'
+      file: FileType
+      cover: FileType
+      banner: FileType[]
+      detail: FileType
+      desc: FileType
+      remark: FileType
+    }[]
+  }
 }
 
 declare namespace ApiType

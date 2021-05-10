@@ -42,4 +42,30 @@ export class CasesService {
     `
     return this.graphql.mutation<GrapqlType.CreateCaseResType>(graphql, params)
   }
+
+  getCase(params: GrapqlType.CaseParamsType): Observable<{cases: GrapqlType.CaseResType}>
+  {
+    const graphql = gql`
+      query getCases($page: Int!, $pageSize: Int!) {
+        cases(page: $page, pageSize: $pageSize) {
+          total
+          items {
+            id
+            uid
+            label
+            version
+            icon{id url}
+            type
+            file{id url}
+            cover{id url}
+            banner{id, url}
+            detail {id url}
+            desc
+            remark
+          }
+        }
+      }
+    `
+    return this.graphql.query<{cases: GrapqlType.CaseResType}>(graphql, params)
+  }
 }

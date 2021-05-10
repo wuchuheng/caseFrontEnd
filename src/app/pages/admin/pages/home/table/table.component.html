@@ -1,0 +1,42 @@
+<nz-table #basicTable [nzData]="pageData.items">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>应用名</th>
+    <th>版本号</th>
+    <th>图标</th>
+    <th>类型</th>
+    <th>封面</th>
+    <th>展示图</th>
+    <th>详情图</th>
+    <th>说明</th>
+    <th>标注</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of pageData.items">
+    <td>{{ item.id }}</td>
+    <td>{{ item.label }}</td>
+    <td>{{ item.version }}</td>
+    <td> <img nz-image width="30rem" height="30rem" [nzSrc]="item.icon.url" /> </td>
+    <td>{{ item.type }}</td>
+    <td> <img nz-image width="30rem" height="30rem" [nzSrc]="item.cover.url" /> </td>
+    <td>
+      <img
+        *ngFor="let i of item.banner"
+        nz-image
+        width="30rem"
+        height="30rem"
+        [nzSrc]="i.url"
+      />
+    </td>
+    <td> <img nz-image width="30rem" height="30rem" [nzSrc]="item.detail.url" /> </td>
+    <td>{{item.desc}}</td>
+    <td>{{item.remark}}</td>
+    <td>
+      <a>Action 一 {{ item.id }}</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
