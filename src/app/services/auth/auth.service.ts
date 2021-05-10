@@ -25,7 +25,7 @@ export class AuthService {
     if (localStorage.getItem(ACCESS_TOKEN_KEY) === null) {
       return false
     }
-    const { expiredAt } = JSON.parse(localStorage.get(ACCESS_TOKEN_KEY)) as GrapqlType.LoginResType
-    return Number(expiredAt) * 1000 <= Date.now() ?  false : true
+    const { expiredAt } = JSON.parse(localStorage.getItem(ACCESS_TOKEN_KEY) as string) as GrapqlType.LoginResType
+    return Number(expiredAt) * 1000 > Date.now()
   }
 }
