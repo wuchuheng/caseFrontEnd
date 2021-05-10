@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {GraphqlService} from '../graphql.service';
-import {AuthService} from '../../auth/auth.service';
 import {gql} from '@apollo/client/core';
 import Observable from 'zen-observable';
 

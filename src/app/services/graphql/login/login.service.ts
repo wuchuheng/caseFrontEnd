@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import Observable from 'zen-observable';
-import { AuthService } from '../../auth/auth.service';
 import { GraphqlService } from '../graphql.service';
+import {setToken} from '../../../utils/auth';
 
 type LoginResType = { login: GrapqlType.LoginResType }
 @Injectable({
@@ -13,7 +13,6 @@ export class LoginService {
   constructor(
     private apollo: Apollo,
     private graphql: GraphqlService,
-    private auth: AuthService
   ) { }
 
   login(params: GrapqlType.LoginParamsType): Observable<LoginResType>
@@ -28,7 +27,7 @@ export class LoginService {
     `
     return new Observable<LoginResType>(ob => {
       this.graphql.mutation<LoginResType>(LOGIN_GRAPH, params).subscribe(res => {
-        this.auth.setToken(res.login)
+        setToken(res.login)
         ob.next(res)
       }, err => ob.error(err))
     })

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
 import {GraphqlService} from '../graphql.service';
-import {AuthService} from '../../auth/auth.service';
 import {Observable} from 'rxjs';
 import {fileToBase64} from '@wuchuhengtools/helper';
 

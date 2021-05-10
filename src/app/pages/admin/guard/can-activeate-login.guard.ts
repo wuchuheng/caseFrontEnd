@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
-import {AuthService} from '../../../services/auth/auth.service';
+import {isValidToken} from '../../../utils/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanActiveateLoginGuard implements CanActivate {
   constructor(
-    private auth: AuthService,
     private router: Router
     ) {
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if ( this.auth.isValidToken() ) {
+    if (isValidToken()) {
       return true;
     } else {
       const urlTree = this.router.parseUrl('/admin/login')

@@ -3,6 +3,8 @@ import { Apollo, gql } from 'apollo-angular';
 import Observable from 'zen-observable';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DocumentNode } from 'graphql/language/ast';
+import {Router} from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,20 @@ export class GraphqlService {
 
   constructor(
     private apollo: Apollo,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private router: Router
   ) { }
+
+  errorHandle(err: GraphqlError): void
+  {
+    this.message.create('error', err.message)
+    this.loading = false
+    const errorCode = Number(err.graphQLErrors[0].extensions.code)
+    // 定向到登录页面
+    if (errorCode === 50000) {
+      setTimeout(() => this.router.navigateByUrl('/admin/login'), 1000)
+    }
+  }
 
   /**
    * 更改操作
@@ -32,8 +46,7 @@ export class GraphqlService {
         ob.next(data as T)
       },
         err => {
-          this.message.create('error', err.message)
-          this.loading = false
+          this.errorHandle(err)
           ob.error(err)
         })
     })
@@ -50,10 +63,13 @@ export class GraphqlService {
         this.loading = false
         ob.next(data as T)
       }, err => {
-        this.message.create('error', err.message)
-        this.loading = false
+        this.errorHandle(err)
         ob.error(err)
       })
     })
   }
+}
+
+class GraphqlError extends Error{
+  graphQLErrors: {extensions: {code: string}}[] = []
 }
