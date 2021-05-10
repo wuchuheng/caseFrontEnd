@@ -1,13 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import {Observable, Observer} from 'rxjs';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {environment} from '../../../../../../../../environments/environment.prod';
-
-type EmitType = {
-  id: number
-  url: string
-}
 
 function getBase64(file: File): Promise<string | ArrayBuffer | null> {
   return new Promise((resolve, reject) => {
@@ -24,35 +19,24 @@ function getBase64(file: File): Promise<string | ArrayBuffer | null> {
   styleUrls: ['./multi-upload.component.scss']
 })
 export class MultiUploadComponent implements OnInit {
+  @Output() nzChange: EventEmitter<NzUploadFile[]> = new EventEmitter<NzUploadFile[]>()
+  @Input() initFileList!: NzUploadFile[]
   actionUrl = `${environment.apiUrl}/uploadIcons`
+  previewImage: string | undefined = '';
+  previewVisible = false;
 
   constructor(private msg: NzMessageService) {}
 
   ngOnInit(): void {
   }
 
-  fileList: NzUploadFile[] = [
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-    },
-    // {
-    //   uid: '-xxx',
-    //   percent: 50,
-    //   name: 'image.png',
-    //   status: 'uploading',
-    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-    // },
-    // {
-    //   uid: '-5',
-    //   name: 'image.png',
-    //   status: 'error'
-    // }
-  ];
-  previewImage: string | undefined = '';
-  previewVisible = false;
+  get fileList(): NzUploadFile[] {
+    return this.initFileList
+  }
+
+  set fileList(newList: NzUploadFile[])
+  {
+  }
 
   handlePreview = async (file: NzUploadFile) => {
     if (!file.url && !file.preview) {
@@ -81,18 +65,13 @@ export class MultiUploadComponent implements OnInit {
     });
   };
 
-  handleChange(info: { file: NzUploadFile }): void {
-    console.log(info)
+
+  handleChange(info: { file: NzUploadFile, fileList: NzUploadFile[] }): void {
     switch (info.file.status) {
       case 'uploading':
         break;
       case 'done':
-        // Get this url from response in real world.
-        // this.getBase64(info.file!.originFileObj!, (img: string) => {
-        //   const res = info.file.response as EmitType
-        //   // this.onChange.emit(res)
-        //   // this.avatarUrl = img;
-        // });
+        this.nzChange.emit(info.fileList)
         break;
       case 'error':
         this.msg.error('Network error');

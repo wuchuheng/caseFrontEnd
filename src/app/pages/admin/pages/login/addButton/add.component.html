@@ -16,12 +16,16 @@
 
 <nz-modal
   [nzVisible]="isVisitedForm"
-  nzCentered
   [nzClosable]="false"
   [nzFooter]="null"
   [nzWidth]="'50%'"
+  (nzOnCancel)="onCancel()"
 >
-  <app-form></app-form>
+  <app-form
+    *ngIf="packageInfo.id !== 0"
+    (created)="onCreated($event)"
+    [packageInfo]="packageInfo"
+  ></app-form>
 </nz-modal>
 
 <input

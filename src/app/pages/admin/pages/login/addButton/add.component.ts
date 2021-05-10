@@ -1,6 +1,7 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {UploadService} from '../../../../../services/upload/upload.service';
 import {HttpEventType} from '@angular/common/http';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-add',
@@ -9,24 +10,42 @@ import {HttpEventType} from '@angular/common/http';
 })
 export class AddComponent implements OnInit {
   @ViewChild('file', {static: false}) input!: ElementRef<HTMLInputElement>;
+  @Output() created: EventEmitter<GrapqlType.CreateCaseResType> = new EventEmitter<GrapqlType.CreateCaseResType>()
+  packageInfo!: ApiType.UploadApkResType
 
   uploadReport = {
     isUpload: false,
     progress: 0
   }
-  isVisitedForm = true
+  isVisitedForm = false
 
   constructor(
     private uploadService: UploadService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.resetPackageInfo()
+  }
+
+  resetPackageInfo(): void
+  {
+    this. packageInfo = {
+      iconFileId: 0,
+      iconUrl: '',
+      id: 0,
+      label: '',
+      size: 0,
+      type: 'android',
+      version: ''
+    }
+  }
 
   /**
    * 选择上传文件
    */
   onSelectFile(): void
   {
+    this.resetPackageInfo()
     this.input.nativeElement.value = ''
     this.input.nativeElement.click()
   }
@@ -56,9 +75,21 @@ export class AddComponent implements OnInit {
             isUpload: false,
             progress: 0
           }
-          console.log(event.body)
+          this.isVisitedForm = true
+          this.packageInfo = event.body as ApiType.UploadApkResType
           break;
       }
     })
+  }
+  onCreated(params: GrapqlType.CreateCaseResType): void
+  {
+    this.isVisitedForm = false
+    this.created.emit(params)
+  }
+
+  onCancel(): void
+  {
+    this.resetPackageInfo()
+    this.isVisitedForm = false
   }
 }

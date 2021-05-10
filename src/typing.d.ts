@@ -11,16 +11,36 @@ declare namespace GrapqlType {
     name: string
     fileBase64: string
   }
-  export type UploadFileResType = {
-    id: number
-    size: number
-    version: string
-    iconUrl: string
-    iconFileId: number
-    label: string
-  }
   export type CategoriesType = {
     id: number
     name: string
   }[]
+  export type CreateCaseParamsType = {
+    id: number
+    label: string
+    bannerFileIds: number[]
+    category: number
+    coverFileId: number
+    desc: string
+    detailFileId: number
+    iconFileId: number
+    remark: string
+  }
+  export type CreateCaseResType = {
+    create: number
+  }
 }
+
+declare namespace ApiType
+{
+  export type UploadApkResType = {
+    iconFileId: number
+    iconUrl: string
+    id: number
+    label: string
+    size: number
+    type: 'android' | 'ios'
+    version: string
+  }
+}
+

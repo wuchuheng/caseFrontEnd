@@ -58,19 +58,52 @@
           [avatarUrl]="banner.url"
           (onChange)="onUploadCover($event)"
         ></app-upload>
+        <div class="msg" *ngIf="coverFileId.errors?.required">封面不能为空</div>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="icon">示例图</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="bannerFileIds">示例图</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <app-multi-upload></app-multi-upload>
+        <app-multi-upload
+          [initFileList]="bannerFileList"
+          (nzChange)="onBannerChange($event)"
+        ></app-multi-upload>
+        <div class="msg" *ngIf="bannerFileIds.errors?.required">封面不能为空</div>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="remark">备注</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="remark" id="remark" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="desc">说明</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <textarea nz-input formControlName="desc" id="desc"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="detailFileId">详情图</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <app-upload
+          [avatarUrl]="detailFile.url"
+          (onChange)="onDetailFile($event)"
+        ></app-upload>
+        <div class="msg" *ngIf="detailFileId.errors?.required">详情图不能为空</div>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item nz-row class="register-area">
       <nz-form-control [nzSpan]="14" [nzOffset]="6">
-        <button nz-button nzType="primary">保存</button>
+        <button
+          nz-button
+          nzType="primary"
+        >保存</button>
       </nz-form-control>
     </nz-form-item>
   </form>
