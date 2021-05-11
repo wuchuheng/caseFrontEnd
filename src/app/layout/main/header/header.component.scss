@@ -21,3 +21,11 @@
     }
   }
 }
+
+.active {
+  @apply py-1 px-4
+    bg-white
+    rounded
+    text-primay
+  ;
+}

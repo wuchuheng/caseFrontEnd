@@ -4,8 +4,11 @@
     <div class="nav">
       <div
         *ngFor="let nav of navs"
-        (click)="onRedirect(nav.path)"
-      > {{nav.title}} </div>
+        (click)="onRedirect(nav.id)">
+        <span [class.active]="currentCategoryId === nav.id">
+          {{nav.name}}
+        </span>
+      </div>
     </div>
   </div>
 </div>

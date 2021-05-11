@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CasesService} from '../../../../services/graphql/cases/cases.service';
 import CaseParamsType = GrapqlType.CaseParamsType;
+import {GraphqlService} from '../../../../services/graphql/graphql.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
   pageInfo: GrapqlType.CaseParamsType = {
     page: 1,
     pageSize: 10,
-    keyword: ''
+    keyword: '',
+    categoryId: 0
   }
 
   pageData: GrapqlType.CaseResType = {
@@ -31,13 +33,18 @@ export class HomeComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private caseService: CasesService
-              ) { }
+  ) { }
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       appName: ['', [Validators.required]]
     })
     this.getCase(this.pageInfo)
+    this.caseService.caseSubject.subscribe(res => {
+        this.loading = false
+        this.pageData = res.cases
+        this.summary = res.summary
+    })
   }
 
   onSubmit(): void
@@ -48,15 +55,17 @@ export class HomeComponent implements OnInit {
   getCase(page: CaseParamsType): void
   {
     this.loading = true
-    this.caseService.getCase(page).subscribe(res => {
-      this.loading = false
-      this.pageData = res.cases
-      this.summary = res.summary
-    })
+    this.caseService.getCase(page)
   }
   onChange(page: number): void
   {
     this.pageInfo = {...this.pageInfo, page}
+    this.getCase(this.pageInfo)
+  }
+
+  onCreate(data: GrapqlType.CreateCaseResType): void
+  {
+    this.pageInfo.page = 1
     this.getCase(this.pageInfo)
   }
 }

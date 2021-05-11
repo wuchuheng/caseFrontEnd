@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-
-type NavsType = {title: string, path: string}
+import {ActivatedRoute, Router} from '@angular/router';
+import {CategoryService} from '../../../services/graphql/category/category.service';
+import {CasesService} from '../../../services/graphql/cases/cases.service';
 
 @Component({
   selector: 'app-header',
@@ -9,23 +9,51 @@ type NavsType = {title: string, path: string}
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  navs: NavsType[] = [
-    {title: '首页', path: '/'},
-    {title: '社交', path: '/'},
-    {title: '商城', path: '/'},
-    {title: '直播', path: '/'},
-    {title: '社交', path: '/'},
-    {title: '商城', path: '/'},
-    {title: '直播', path: '/'}
-  ]
+  navs: GrapqlType.CategoriesType = []
   constructor(
-    private router: Router
+    private router: Router,
+    private categoriesService: CategoryService,
+    private caseService: CasesService,
+    private route: ActivatedRoute
   ) { }
 
+  currentCategoryId = 0
+
   ngOnInit(): void {
+    this.fetchCategories()
+    this.route.queryParams.subscribe(params => {
+      this.currentCategoryId = Number(params.categoryId) || 0
+    })
   }
-  onRedirect(url: string): void
+  onRedirect(categoryId: number): void
   {
-      this.router.navigateByUrl(url)
+    const pageInfo: GrapqlType.CaseParamsType = {
+      page: 1,
+      pageSize: 1000,
+      keyword: '',
+      categoryId: 0,
+    }
+
+    let url = ''
+    if (categoryId === 0) {
+      url = '/'
+    } else {
+      url = `/?categoryId=${categoryId}`
+    }
+    pageInfo.categoryId = categoryId
+    this.router.navigateByUrl(url)
+    this.caseService.getCase(pageInfo)
+  }
+
+  fetchCategories(): void
+  {
+    this.categoriesService.getCategories().subscribe(res => {
+      this.navs = [{id: 0, name: '首页'}, ...res.categories]
+    })
+  }
+
+  activeTab(): void
+  {
+
   }
 }

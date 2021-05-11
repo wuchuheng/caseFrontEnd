@@ -42,6 +42,7 @@ declare namespace GrapqlType {
     page: number
     pageSize: number
     keyword: string
+    categoryId: number
   }
   export type CaseType = {
     id: number

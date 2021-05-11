@@ -63,8 +63,6 @@ export class GraphqlService {
         this.loading = false
         ob.next(data as T)
       }, err => {
-        console.log(err)
-        debugger
         this.errorHandle(err)
         ob.error(err)
       })
