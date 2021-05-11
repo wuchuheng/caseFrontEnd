@@ -11,16 +11,16 @@
     </div>
   </div>
   <div class="contentWrapper">
-    <div> <img src="../../assets/images/caseBanner@2x.png" /> </div>
+    <div> <img [src]="cover.url" /> </div>
     <div>
       <div class="desc">{{desc}}</div>
       <div class="showDetail"></div>
     </div>
     <div>
-      <img src="../../assets/images/example1@2x.png" />
-      <img src="../../assets/images/example2@2x.png" />
-      <img src="../../assets/images/example3@2x.png" />
-      <img src="../../assets/images/example4@2x.png" />
+      <img
+        *ngFor="let item of banner"
+        [src]="item.url"
+      />
     </div>
   </div>
 </div>

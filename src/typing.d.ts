@@ -56,7 +56,7 @@ declare namespace GrapqlType {
       cover: FileType
       banner: FileType[]
       detail: FileType
-      desc: FileType
+      desc: string
       remark: FileType
     }[]
   }

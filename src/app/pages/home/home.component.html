@@ -1,3 +1,10 @@
 <div class="home">
-  <app-item-render></app-item-render>
+  <app-item-render
+   *ngFor="let item of pageData.items"
+   [id]="item.id"
+   [desc]="item.desc"
+   [title]="item.label"
+   [banner]="item.banner"
+   [cover]="item.cover"
+  ></app-item-render>
 </div>

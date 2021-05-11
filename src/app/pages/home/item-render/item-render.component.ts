@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -7,9 +7,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./item-render.component.scss']
 })
 export class ItemRenderComponent implements OnInit {
-  public id = 1
-  public desc = '一款潮流人士专用的软件，具备商城，短视频，社区，租赁等功能，一款深受潮人喜爱的软件，专门发布一些关于潮流穿搭的资讯，给潮人推荐一些潮流的衣服、包包、潮鞋、享受零元租，和限时秒杀等活动。 '
-  public title = '领潮APP'
+  @Input() id!: number
+  @Input() desc!: string
+  @Input() title!: string
+  @Input() banner!: {id: number; url: string}[]
+  @Input() cover!: {id: number; url: string}
 
   constructor(
     private router: Router
