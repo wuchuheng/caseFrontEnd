@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GraphqlService } from 'src/app/services/graphql/graphql.service';
@@ -34,8 +33,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
    }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get username(): AbstractControl
   {

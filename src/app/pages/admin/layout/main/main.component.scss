@@ -1,5 +1,15 @@
 .header {
-  @apply h-12 flex items-center;
+  @apply flex items-center justify-between
+  h-12;
+  >div{
+    &:first-child {
+      @apply flex items-center;
+    }
+    &:last-child {
+      @apply mr-4;
+    }
+  }
+
 }
 .trigger {
     font-size: 18px;

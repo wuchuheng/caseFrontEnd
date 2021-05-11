@@ -16,3 +16,8 @@ export const isValidToken = (): boolean => {
   const { expiredAt } = JSON.parse(localStorage.getItem(ACCESS_TOKEN_KEY) as string) as GrapqlType.LoginResType
   return Number(expiredAt) * 1000 > Date.now()
 }
+
+export const removeToken = (): boolean => {
+  localStorage.removeItem(ACCESS_TOKEN_KEY)
+  return true
+}

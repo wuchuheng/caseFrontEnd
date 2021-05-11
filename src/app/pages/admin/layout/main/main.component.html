@@ -23,9 +23,12 @@
   </nz-sider>
   <nz-layout>
     <nz-header class="header">
-      <app-collap-icon class="trigger" (click)="isCollapsed = !isCollapsed" *ngIf="!isCollapsed"></app-collap-icon>
-      <app-menu-unfold-icon class="trigger" (click)="isCollapsed = !isCollapsed" *ngIf="isCollapsed">
-      </app-menu-unfold-icon>
+      <div>
+        <app-collap-icon class="trigger" (click)="isCollapsed = !isCollapsed" *ngIf="!isCollapsed"></app-collap-icon>
+        <app-menu-unfold-icon class="trigger" (click)="isCollapsed = !isCollapsed" *ngIf="isCollapsed">
+        </app-menu-unfold-icon>
+      </div>
+      <div (click)="onLogout()">退出</div>
     </nz-header>
     <div class="inner-content">
       <router-outlet></router-outlet>

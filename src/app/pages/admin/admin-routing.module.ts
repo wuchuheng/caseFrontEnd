@@ -6,14 +6,13 @@ import {MainComponent} from './layout/main/main.component';
 import {CanActiveateLoginGuard} from './guard/can-activeate-login.guard';
 
 const routes: Routes = [
-  {path: 'admin', children: [
-      {path: 'login', component: LoginComponent},
-      {path: '', component: MainComponent,
-        canActivate: [CanActiveateLoginGuard],
-        children: [
-          {path: 'home', component: HomeComponent}
-        ]}
-    ]}
+  {path: 'admin',
+    component: MainComponent,
+    children: [
+      {path: '', component: HomeComponent, canActivate: [CanActiveateLoginGuard]},
+      {path: 'home', component: HomeComponent, canActivate: [CanActiveateLoginGuard]}
+    ]},
+  {path: 'admin/login', component: LoginComponent},
 ];
 
 @NgModule({
