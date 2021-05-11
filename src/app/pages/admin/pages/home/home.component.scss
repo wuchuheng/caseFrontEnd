@@ -33,7 +33,7 @@
   }
   >div:not(:first-child) {
     box-sizing: border-box;
-    @apply 
+    @apply
       border-l border-gray-200 border-solid
       h-20
     ;
@@ -41,7 +41,7 @@
 }
 
 @mixin contentHeader {
-  @apply 
+  @apply
   w-full
   flex justify-between
   ;
@@ -56,7 +56,10 @@
 }
 
 .content {
-  @apply p-4 
+  @apply p-4
     grid grid-cols-1 gap-4;
     .header { @include contentHeader; }
+}
+.paginationWrapper {
+  @apply flex justify-end;
 }

@@ -6,15 +6,15 @@
   <div class="panel">
     <div>
       <div>全部应用</div>
-      <div>100</div>
+      <div>{{summary.total}}</div>
     </div>
     <div>
       <div>安卓应用</div>
-      <div>100</div>
+      <div>{{summary.android}}</div>
     </div>
     <div>
       <div>苹果应用</div>
-      <div>100</div>
+      <div>{{summary.ios}}</div>
     </div>
   </div>
   <div class='content'>
@@ -36,12 +36,79 @@
           </nz-form-item>
           <nz-form-item>
             <nz-form-control>
-              <button nz-button nzType="primary" [disabled]="!searchForm.valid">搜索</button>
+              <button nz-button nzType="primary">搜索</button>
             </nz-form-control>
           </nz-form-item>
         </form>
       </div>
     </div>
-    <app-table></app-table>
+    <div nz-row [nzGutter]="[24, 24]">
+      <div nz-col class="gutter-row" [nzSpan]="24">
+        <nz-table
+          #basicTable
+          [nzData]="pageData.items"
+          [nzShowPagination]="false"
+          [nzLoading]="loading"
+        >
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>应用名</th>
+            <th>版本号</th>
+            <th>图标</th>
+            <th>类型</th>
+            <th>封面</th>
+            <th>展示图</th>
+            <th>详情图</th>
+            <th>说明</th>
+            <th>标注</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of pageData.items">
+            <td>{{ item.id }}</td>
+            <td>{{ item.label }}</td>
+            <td>{{ item.version }}</td>
+            <td> <img nz-image width="30rem" height="30rem" [nzSrc]="item.icon.url" /> </td>
+            <td>{{ item.type }}</td>
+            <td> <img nz-image width="30rem" height="30rem" [nzSrc]="item.cover.url" /> </td>
+            <td>
+              <img
+                *ngFor="let i of item.banner"
+                nz-image
+                width="30rem"
+                height="30rem"
+                [nzSrc]="i.url"
+              />
+            </td>
+            <td> <img nz-image width="30rem" height="30rem" [nzSrc]="item.detail.url" /> </td>
+            <td>{{item.desc}}</td>
+            <td>{{item.remark}}</td>
+            <td>
+              <div nz-row [nzGutter]="[0, 0]">
+                <div nz-col class="gutter-row" [nzSpan]="12">
+                  删除
+                </div>
+                <div nz-col class="gutter-row" [nzSpan]="12">
+                  修改
+                </div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+      <div nz-col class="paginationWrapper" [nzSpan]="24">
+        <nz-pagination
+          [nzPageIndex]="pageInfo.page"
+          [nzPageSize]="pageInfo.pageSize"
+          [nzTotal]="pageData.total"
+          (nzPageIndexChange)="onChange($event)"
+        ></nz-pagination>
+      </div>
+    </div>
+
+
   </div>
 </div>

@@ -3,6 +3,11 @@ declare namespace GrapqlType {
     accessToken: string
     expiredAt: number
   }
+  export type Summary = {
+    total: number
+    android: number
+    ios: number
+  }
   export type LoginParamsType = {
     username: string
     password: string
@@ -36,6 +41,7 @@ declare namespace GrapqlType {
   export type CaseParamsType = {
     page: number
     pageSize: number
+    keyword: string
   }
   export type CaseResType = {
     total: number

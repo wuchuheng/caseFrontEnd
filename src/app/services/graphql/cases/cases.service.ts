@@ -4,6 +4,7 @@ import {GraphqlService} from '../graphql.service';
 import {gql} from '@apollo/client/core';
 import Observable from 'zen-observable';
 
+type CaseResType = {cases: GrapqlType.CaseResType; summary: GrapqlType.Summary}
 @Injectable({
   providedIn: 'root'
 })
@@ -43,11 +44,11 @@ export class CasesService {
     return this.graphql.mutation<GrapqlType.CreateCaseResType>(graphql, params)
   }
 
-  getCase(params: GrapqlType.CaseParamsType): Observable<{cases: GrapqlType.CaseResType}>
+  getCase(params: GrapqlType.CaseParamsType): Observable<CaseResType>
   {
     const graphql = gql`
-      query getCases($page: Int!, $pageSize: Int!) {
-        cases(page: $page, pageSize: $pageSize) {
+      query getCases($page: Int!, $pageSize: Int!, $keyword: String!) {
+        cases(page: $page, pageSize: $pageSize, keyword: $keyword) {
           total
           items {
             id
@@ -64,8 +65,13 @@ export class CasesService {
             remark
           }
         }
+        summary{
+          total
+          android
+          ios
+        }
       }
     `
-    return this.graphql.query<{cases: GrapqlType.CaseResType}>(graphql, params)
+    return this.graphql.query<CaseResType>(graphql, params)
   }
 }
