@@ -62,7 +62,7 @@ export class GraphqlService {
       }).subscribe(({data}) => {
         this.loading = false
         ob.next(data as T)
-      }, err => {
+      }, (err) => {
         this.errorHandle(err)
         ob.error(err)
       })

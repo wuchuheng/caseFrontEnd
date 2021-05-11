@@ -68,4 +68,9 @@ export class HomeComponent implements OnInit {
     this.pageInfo.page = 1
     this.getCase(this.pageInfo)
   }
+
+  onUpdate(): void
+  {
+    console.log('hello')
+  }
 }

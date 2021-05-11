@@ -87,7 +87,6 @@ export class CasesService {
     const graphQl = gql`
       query queryCase ($id: Int!){
         case(id: $id) {
-          id
           label
           icon {url}
           remark
@@ -97,6 +96,7 @@ export class CasesService {
         }
       }
     `
+
     return this.graphql.query<GetCaseByIdResType>(graphQl, {id})
   }
 }

@@ -13,7 +13,6 @@ export function provideApollo(httpLink: HttpLink): any {
   const basic = setContext((operation, context) => ({
     headers: { Accept: 'charset=utf-8' }
   }));
-
   const auth = setContext((operation, context) => {
       const token = isValidToken() ? {Authorization: `Bearer ${getToken()}`} : {}
       return {
@@ -21,14 +20,10 @@ export function provideApollo(httpLink: HttpLink): any {
       }
     }
   );
-
-
   const link = ApolloLink.from([basic, auth, httpLink.create({ uri })]);
   const cache = new InMemoryCache();
-  return {
-    link,
-    cache
-  }
+
+  return { link, cache }
 }
 
 @NgModule({

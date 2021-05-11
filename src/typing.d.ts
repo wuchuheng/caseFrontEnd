@@ -59,7 +59,6 @@ declare namespace GrapqlType {
     remark: FileType
   }
   export type OneCaseResType = {
-    id: number
     label: string
     icon: {url: string}
     remark: string
