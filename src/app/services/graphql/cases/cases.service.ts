@@ -5,6 +5,7 @@ import {gql} from '@apollo/client/core';
 import Observable from 'zen-observable';
 
 type CaseResType = {cases: GrapqlType.CaseResType; summary: GrapqlType.Summary}
+type GetCaseByIdResType = {case: GrapqlType.OneCaseResType}
 @Injectable({
   providedIn: 'root'
 })
@@ -73,5 +74,23 @@ export class CasesService {
       }
     `
     return this.graphql.query<CaseResType>(graphql, params)
+  }
+
+  getCaseById(id: number): Observable<GetCaseByIdResType>
+  {
+    const graphQl = gql`
+      query queryCase ($id: Int!){
+        case(id: $id) {
+          id
+          label
+          icon {url}
+          remark
+          desc
+          detail {url}
+          file {id url}
+        }
+      }
+    `
+    return this.graphql.query<GetCaseByIdResType>(graphQl, {id})
   }
 }

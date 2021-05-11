@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
-type NavsType = {title: string}
+type NavsType = {title: string, path: string}
 
 @Component({
   selector: 'app-header',
@@ -9,16 +10,22 @@ type NavsType = {title: string}
 })
 export class HeaderComponent implements OnInit {
   navs: NavsType[] = [
-    {title: '社交'},
-    {title: '商城'},
-    {title: '直播'},
-    {title: '社交'},
-    {title: '商城'},
-    {title: '直播'}
+    {title: '首页', path: '/'},
+    {title: '社交', path: '/'},
+    {title: '商城', path: '/'},
+    {title: '直播', path: '/'},
+    {title: '社交', path: '/'},
+    {title: '商城', path: '/'},
+    {title: '直播', path: '/'}
   ]
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
-
+  onRedirect(url: string): void
+  {
+      this.router.navigateByUrl(url)
+  }
 }

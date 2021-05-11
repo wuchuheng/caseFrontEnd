@@ -1,15 +1,20 @@
-<div class="main">
+<div class="main" *ngIf="case">
   <div class="headerWrapper">
-    <img src="../../assets/images/appIcon.png"/>
-    <div>
+    <img [src]="case.icon.url"/>
+    <div class="contentWrapper">
       <div class="titleWrapper">
-        <div>APP名称</div>
+        <div>{{case.label}}</div>
         <div>
-          (支持:手机(安卓) | 账号：微信登录)
+          ({{case.remark}})
         </div>
       </div>
-      <div class="desc">{{desc}}</div>
+      <p class="desc">{{case.desc}}</p>
     </div>
   </div>
-  <img src="../../assets/images/detail@2x@2x.png" />
+  <div class="actionWrapper">
+    <button (click)="onCopy()">复制链接</button>
+    <button (click)="onDownload()">下载演示</button>
+  </div>
+
+  <img [src]="case.detail.url" />
 </div>

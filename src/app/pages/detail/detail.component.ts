@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {CasesService} from '../../services/graphql/cases/cases.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import copy from 'copy-to-clipboard';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-detail',
@@ -6,12 +10,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
+  case!: GrapqlType.OneCaseResType
+  loading = false
 
-  public desc = '一款专业情绪测评的软件，软件分双端用户端以及管理师分析端，用户可以将自己的情绪和想法通过图案画出来后拍照上传到平台，管理师收到任务订单后会对用户所提供的图案进行分析当前的一个状况，运势、家庭、工作、学习等分析。具备商城功能可推荐用户建议用户购买某些物品来提升自身的运势。'
+  constructor(
+    private caseService: CasesService,
+    private route: ActivatedRoute,
+    private msgService: NzMessageService
+  ) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
+      const id = Number(this.route.snapshot.paramMap.get('id'))
+      this._fetchCaseById(id)
   }
 
+  private _fetchCaseById(id: number): void
+  {
+    this.loading = true
+    this.caseService.getCaseById(id).subscribe(res => {
+      this.loading = false
+      this.case = res.case
+    }, error => {
+      console.log(error)
+    })
+  }
+
+  onCopy(): void
+  {
+    copy(this.case.file.url) ? this.msgService.success( '复制成功') : this.msgService.error('复制失败')
+  }
+
+  onDownload(): void
+  {
+    window.open(this.case.file.url)
+  }
 }

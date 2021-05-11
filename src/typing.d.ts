@@ -43,22 +43,32 @@ declare namespace GrapqlType {
     pageSize: number
     keyword: string
   }
-  export type CaseResType = {
-    total: number
-    items: {
-      id: number
-      uid: number
-      label: string
-      version: string
-      icon: FileType
-      type: 'android' | 'ios'
-      file: FileType
-      cover: FileType
-      banner: FileType[]
-      detail: FileType
-      desc: string
-      remark: FileType
-    }[]
+  export type CaseType = {
+    id: number
+    uid: number
+    label: string
+    version: string
+    icon: FileType
+    type: 'android' | 'ios'
+    file: FileType
+    cover: FileType
+    banner: FileType[]
+    detail: FileType
+    desc: string
+    remark: FileType
+  }
+  export type OneCaseResType = {
+    id: number
+    label: string
+    icon: {url: string}
+    remark: string
+    desc: string
+    detail: {url: string}
+    file: FileType
+  }
+export type CaseResType = {
+  total: number
+    items: CaseType[]
   }
 }
 
