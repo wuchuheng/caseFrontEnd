@@ -1,29 +1,28 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
-import {UploadService} from '../../../../../services/upload/upload.service';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {HttpEventType} from '@angular/common/http';
+import {UploadService} from '../../../../services/upload/upload.service';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'app-upload-package',
+  templateUrl: './upload-package.component.html',
+  styleUrls: ['./upload-package.component.scss']
 })
-export class AddComponent implements OnInit {
+export class UploadPackageComponent implements OnInit {
   @ViewChild('file', {static: false}) input!: ElementRef<HTMLInputElement>;
-  @Output() created: EventEmitter<GrapqlType.CreateCaseResType> = new EventEmitter<GrapqlType.CreateCaseResType>()
-  packageInfo!: ApiType.UploadApkResType
-
+  @Output() uploaded: EventEmitter<ApiType.UploadApkResType> = new EventEmitter<ApiType.UploadApkResType>()
   uploadReport = {
     isUpload: false,
     progress: 0
   }
-  isVisitedForm = false
+  packageInfo!: ApiType.UploadApkResType
 
   constructor(
     private uploadService: UploadService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {
-    this.resetPackageInfo()
+  ngOnInit(): void
+  {
+    setTimeout(() => this.onSelectFile() , 500)
   }
 
   resetPackageInfo(): void
@@ -74,21 +73,10 @@ export class AddComponent implements OnInit {
             isUpload: false,
             progress: 0
           }
-          this.isVisitedForm = true
           this.packageInfo = event.body as ApiType.UploadApkResType
+          this.uploaded.emit(this.packageInfo)
           break;
       }
     })
-  }
-  onCreated(params: GrapqlType.CreateCaseResType): void
-  {
-    this.isVisitedForm = false
-    this.created.emit(params)
-  }
-
-  onCancel(): void
-  {
-    this.resetPackageInfo()
-    this.isVisitedForm = false
   }
 }

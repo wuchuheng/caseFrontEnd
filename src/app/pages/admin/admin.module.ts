@@ -14,6 +14,7 @@ import { FormComponent } from './pages/home/addButton/form/form.component';
 import { UploadComponent } from './pages/home/addButton/form/upload/upload.component';
 import { MultiUploadComponent } from './pages/home/addButton/form/multi-upload/multi-upload.component';
 import { EditComponent } from './pages/home/edit/edit.component';
+import { UploadPackageComponent } from './components/upload-package/upload-package.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EditComponent } from './pages/home/edit/edit.component';
     FormComponent,
     UploadComponent,
     MultiUploadComponent,
-    EditComponent
+    EditComponent,
+    UploadPackageComponent
   ],
   imports: [
     CommonModule,

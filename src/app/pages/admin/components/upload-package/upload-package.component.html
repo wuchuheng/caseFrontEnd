@@ -1,0 +1,21 @@
+<nz-modal
+  [nzVisible]="uploadReport.isUpload"
+  nzCentered
+  [nzClosable]="false"
+  [nzFooter]="null"
+>
+  <div class="dialogWrapper">
+    <div class="imgWrapper">
+      <img src="../../assets/svg/undraw_uploading_go67.svg" />
+    </div>
+    <p>上传中...</p>
+    <nz-progress [nzPercent]="uploadReport.progress"></nz-progress>
+  </div>
+</nz-modal>
+<input
+  hidden
+  accept=".apk"
+  type="file"
+  ngModel
+  (input)="onSelectedFile()"
+  #file/>

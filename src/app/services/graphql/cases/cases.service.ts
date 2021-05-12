@@ -3,6 +3,7 @@ import {Apollo} from 'apollo-angular';
 import {GraphqlService} from '../graphql.service';
 import {gql} from '@apollo/client/core';
 import {Subject, Observable, never} from 'rxjs';
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 type CaseResType = {cases: GrapqlType.CaseResType; summary: GrapqlType.Summary}
 type GetCaseByIdResType = {case: GrapqlType.OneCaseResType}
@@ -44,7 +45,8 @@ export class CasesService {
 
   constructor(
     private apollo: Apollo,
-    private graphql: GraphqlService
+    private graphql: GraphqlService,
+    private msgService: NzMessageService
   ) { }
 
   create(params: GrapqlType.CreateCaseParamsType): Observable<GrapqlType.CreateCaseResType>
@@ -171,6 +173,34 @@ export class CasesService {
         rx.error(error)
       })
     })
+  }
 
+  /**
+   * 迭代新包
+   */
+  iteratePackage(variables: GrapqlType.IteratePackageVariablesType, pageParams: GrapqlType.CaseParamsType): Observable<any>
+  {
+    const ITERATE_GRAPHQL = gql`
+      mutation updatePackageMutation($id: ID!, $packageId: Int!) {
+        updatePackage(id: $id packageId: $packageId)
+      }
+    `
+    return new Observable<any>(rx => {
+      this.apollo.mutate({
+        mutation: ITERATE_GRAPHQL,
+        variables,
+        update: (cache) => {
+          // 清除缓存获取新的数据
+          this.apollo.client.clearStore().then(res => {
+            this.getCase(pageParams)
+          })
+        }
+      }).subscribe(() => {
+        rx.next()
+      }, error => {
+        this.msgService.error(error.message)
+        rx.error(error)
+      })
+    })
   }
 }

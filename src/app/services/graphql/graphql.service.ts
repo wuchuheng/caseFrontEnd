@@ -5,7 +5,6 @@ import { DocumentNode } from 'graphql/language/ast';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })

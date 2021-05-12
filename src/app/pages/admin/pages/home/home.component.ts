@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CasesService} from '../../../../services/graphql/cases/cases.service';
 import CaseParamsType = GrapqlType.CaseParamsType;
-import CaseType = GrapqlType.CaseType;
 import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
@@ -13,6 +12,8 @@ import {NzMessageService} from 'ng-zorro-antd/message';
 export class HomeComponent implements OnInit {
   searchForm!: FormGroup;
   size: 'large' | 'default' | 'small' = 'large'
+  isVisitUploadPackage = false
+  iterateId!: number
   pageInfo: GrapqlType.CaseParamsType = {
     page: 1,
     pageSize: 10,
@@ -103,5 +104,22 @@ export class HomeComponent implements OnInit {
     this.caseService.deleteCase(Number(id), this.pageInfo).subscribe(res => {
       this.msgService.success('删除成功')
     })
+  }
+
+  onUploadPackage(packageInfo: ApiType.UploadApkResType): void
+  {
+    this.isVisitUploadPackage = false
+    this.caseService.iteratePackage({id: this.iterateId, packageId: packageInfo.id}, this.pageInfo).subscribe(() => {
+      this.msgService.success('上传成功')
+    })
+  }
+
+  /**
+   * 拉起新包上传
+   */
+  onIterate(id: number): void
+  {
+    this.iterateId = id
+    this.isVisitUploadPackage = true
   }
 }

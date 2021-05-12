@@ -93,7 +93,9 @@
                 <div nz-col class="action gutter-row" [nzSpan]="8"
                      (click)="onUpdate(item)"
                 >修改</div>
-                <div nz-col class="action gutter-row" [nzSpan]="8">上传新包</div>
+                <div nz-col class="action gutter-row" [nzSpan]="8"
+                     (click)="onIterate(item.id)"
+                >上传新包</div>
                 <div
                   nz-col
                   class="action gutter-row"
@@ -124,7 +126,6 @@
   </div>
 </div>
 
-
 <nz-modal
   [nzVisible]="isVisitEditForm"
   [nzClosable]="false"
@@ -138,3 +139,7 @@
     (finished)="onFinished($event)"
   ></app-edit>
 </nz-modal>
+<app-upload-package
+  *ngIf="isVisitUploadPackage"
+  (uploaded)="onUploadPackage($event)"
+></app-upload-package>

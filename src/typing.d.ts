@@ -3,6 +3,10 @@ declare namespace GrapqlType {
     accessToken: string
     expiredAt: number
   }
+  export type IteratePackageVariablesType = {
+    id: number
+    packageId: number
+  }
   export type Summary = {
     total: number
     android: number
