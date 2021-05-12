@@ -9,10 +9,11 @@ import { MainComponent } from './layout/main/main.component';
 import { CollapIconComponent } from './icons/collap-icon/collap-icon.component';
 import { MenuUnfoldIconComponent } from './icons/menu-unfold-icon/menu-unfold-icon.component';
 import { BreadcrumbComponent } from './layout/main/breadcrumb/breadcrumb.component';
-import { AddComponent } from './pages/login/addButton/add.component';
-import { FormComponent } from './pages/login/addButton/form/form.component';
-import { UploadComponent } from './pages/login/addButton/form/upload/upload.component';
-import { MultiUploadComponent } from './pages/login/addButton/form/multi-upload/multi-upload.component';
+import { AddComponent } from './pages/home/addButton/add.component';
+import { FormComponent } from './pages/home/addButton/form/form.component';
+import { UploadComponent } from './pages/home/addButton/form/upload/upload.component';
+import { MultiUploadComponent } from './pages/home/addButton/form/multi-upload/multi-upload.component';
+import { EditComponent } from './pages/home/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MultiUploadComponent } from './pages/login/addButton/form/multi-upload/
     AddComponent,
     FormComponent,
     UploadComponent,
-    MultiUploadComponent
+    MultiUploadComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,

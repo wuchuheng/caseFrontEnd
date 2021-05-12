@@ -90,11 +90,11 @@
             <td>{{item.remark}}</td>
             <td>
               <div nz-row [nzGutter]="[0, 0]">
-                <div nz-col class="gutter-row" [nzSpan]="8"
-                     (click)="onUpdate()"
+                <div nz-col class="action gutter-row" [nzSpan]="8"
+                     (click)="onUpdate(item)"
                 >修改</div>
-                <div nz-col class="gutter-row" [nzSpan]="8">上传新包</div>
-                <div nz-col class="gutter-row" [nzSpan]="8">删除</div>
+                <div nz-col class="action gutter-row" [nzSpan]="8">上传新包</div>
+                <div nz-col class="action gutter-row" [nzSpan]="8">删除</div>
               </div>
             </td>
           </tr>
@@ -112,3 +112,17 @@
     </div>
   </div>
 </div>
+
+
+<nz-modal
+  [nzVisible]="isVisitEditForm"
+  [nzClosable]="false"
+  [nzFooter]="null"
+  [nzWidth]="'50%'"
+  (nzOnCancel)="onCancelUpdate()"
+>
+  <app-edit
+    *ngIf="isVisitEditForm"
+    [EditData]="editData"
+  ></app-edit>
+</nz-modal>

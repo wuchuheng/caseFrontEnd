@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CasesService} from '../../../../services/graphql/cases/cases.service';
 import CaseParamsType = GrapqlType.CaseParamsType;
-import {GraphqlService} from '../../../../services/graphql/graphql.service';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +17,9 @@ export class HomeComponent implements OnInit {
     keyword: '',
     categoryId: 0
   }
+  // 修改参数
+  editData!: GrapqlType.CaseType
+  isVisitEditForm = false
 
   pageData: GrapqlType.CaseResType = {
     total: 0,
@@ -69,8 +71,14 @@ export class HomeComponent implements OnInit {
     this.getCase(this.pageInfo)
   }
 
-  onUpdate(): void
+  onUpdate(editData: GrapqlType.CaseType): void
   {
-    console.log('hello')
+    this.editData = editData
+    this.isVisitEditForm = true
+  }
+
+  onCancelUpdate(): void
+  {
+    this.isVisitEditForm = false
   }
 }
