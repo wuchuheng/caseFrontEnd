@@ -3,6 +3,7 @@ import { Apollo, gql } from 'apollo-angular';
 import Observable from 'zen-observable';
 import { GraphqlService } from '../graphql.service';
 import {setToken} from '../../../utils/auth';
+import {Observer as RxObserver} from 'rxjs';
 
 type LoginResType = { login: GrapqlType.LoginResType }
 @Injectable({

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import Observable from 'zen-observable';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DocumentNode } from 'graphql/language/ast';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 
 @Injectable({

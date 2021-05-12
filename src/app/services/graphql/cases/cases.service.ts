@@ -2,12 +2,40 @@ import { Injectable } from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {GraphqlService} from '../graphql.service';
 import {gql} from '@apollo/client/core';
-import Observable from 'zen-observable';
-import {Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Subject, Observable, never} from 'rxjs';
 
 type CaseResType = {cases: GrapqlType.CaseResType; summary: GrapqlType.Summary}
 type GetCaseByIdResType = {case: GrapqlType.OneCaseResType}
+
+const GET_CASE = gql`
+  query getCases($page: Int!, $pageSize: Int!, $keyword: String!, $categoryId: Int!) {
+    cases(page: $page, pageSize: $pageSize, keyword: $keyword, categoryId: $categoryId) {
+      total
+      items {
+        id
+        uid
+        label
+        version
+        icon{id url}
+        type
+        file{id url}
+        cover{id url}
+        banner{id, url}
+        detail {id url}
+        desc
+        remark
+        size
+        categoryId
+      }
+    }
+    summary{
+      total
+      android
+      ios
+    }
+  }
+`
+
 @Injectable({
   providedIn: 'root'
 })
@@ -51,35 +79,7 @@ export class CasesService {
 
   getCase(params: GrapqlType.CaseParamsType): void
   {
-    const graphql = gql`
-      query getCases($page: Int!, $pageSize: Int!, $keyword: String!, $categoryId: Int!) {
-        cases(page: $page, pageSize: $pageSize, keyword: $keyword, categoryId: $categoryId) {
-          total
-          items {
-            id
-            uid
-            label
-            version
-            icon{id url}
-            type
-            file{id url}
-            cover{id url}
-            banner{id, url}
-            detail {id url}
-            desc
-            remark
-            size
-            categoryId
-          }
-        }
-        summary{
-          total
-          android
-          ios
-        }
-      }
-    `
-    this.graphql.query<CaseResType>(graphql, params).subscribe(res => {
+    this.graphql.query<CaseResType>(GET_CASE, params).subscribe(res => {
       this.caseSubject.next(res)
     })
   }
@@ -146,5 +146,31 @@ export class CasesService {
         rx.next(res)
       })
     })
+  }
+
+  deleteCase(caseId: number, pageParams: GrapqlType.CaseParamsType): Observable<any>
+  {
+    const graphql = gql`
+      mutation deleteCase($caseId:Int!){
+        deleteCase(caseId: $caseId)
+      }
+    `
+    return new Observable<any>(rx => {
+      this.apollo.mutate({
+        mutation: graphql,
+        variables: {caseId},
+        update: (cache) => {
+          // 清除缓存获取新的数据
+          this.apollo.client.clearStore().then(res => {
+            this.getCase(pageParams)
+          })
+        }
+      }).subscribe(() => {
+        rx.next()
+      }, error => {
+        rx.error(error)
+      })
+    })
+
   }
 }

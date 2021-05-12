@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CasesService} from '../../../../services/graphql/cases/cases.service';
 import CaseParamsType = GrapqlType.CaseParamsType;
+import CaseType = GrapqlType.CaseType;
+import {NzMessageService} from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +36,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private caseService: CasesService
+    private caseService: CasesService,
+    private msgService: NzMessageService
   ) { }
 
   ngOnInit(): void {
@@ -93,5 +96,12 @@ export class HomeComponent implements OnInit {
       }
     })
     this.isVisitEditForm = false
+  }
+
+  onDelete(id: number): void
+  {
+    this.caseService.deleteCase(Number(id), this.pageInfo).subscribe(res => {
+      this.msgService.success('删除成功')
+    })
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {GraphqlService} from '../graphql.service';
-import Observable from 'zen-observable';
 import {gql} from '@apollo/client/core';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

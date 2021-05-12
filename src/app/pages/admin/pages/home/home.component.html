@@ -94,7 +94,18 @@
                      (click)="onUpdate(item)"
                 >修改</div>
                 <div nz-col class="action gutter-row" [nzSpan]="8">上传新包</div>
-                <div nz-col class="action gutter-row" [nzSpan]="8">删除</div>
+                <div
+                  nz-col
+                  class="action gutter-row"
+                  [nzSpan]="8"
+                  nz-popconfirm
+                  nzPopconfirmTitle="是否删除？"
+                  (nzOnConfirm)="onDelete(item.id)"
+                  nzPopconfirmPlacement="topLeft"
+                  nz-button
+                  nzCancelText="取消"
+                  nzOkText="确定"
+                >删除</div>
               </div>
             </td>
           </tr>
