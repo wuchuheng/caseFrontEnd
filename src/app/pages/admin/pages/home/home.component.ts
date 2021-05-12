@@ -81,4 +81,17 @@ export class HomeComponent implements OnInit {
   {
     this.isVisitEditForm = false
   }
+
+  onFinished(updatedData: GrapqlType.CaseType): void
+  {
+    this.pageData.items = this.pageData.items.map(i => {
+      if (Number(i.id) === updatedData.id) {
+          this.caseService.getCase(this.pageInfo)
+          return i
+      } else {
+        return i
+      }
+    })
+    this.isVisitEditForm = false
+  }
 }

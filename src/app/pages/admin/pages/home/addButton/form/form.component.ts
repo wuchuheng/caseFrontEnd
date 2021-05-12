@@ -25,8 +25,7 @@ export class FormComponent implements OnInit {
   banner: ImgInfoType = {id: 0, url: ''}
   detailFile: ImgInfoType = {id: 0, url: ''}
 
-  bannerFileList: NzUploadFile[] = [
-  ]
+  bannerFileList: NzUploadFile[] = [ ]
 
   submitForm(): void {
     // tslint:disable-next-line:forin
@@ -117,7 +116,7 @@ export class FormComponent implements OnInit {
   onBannerChange(newFiles: NzUploadFile[]): void
   {
     const bannerIds: number[] = []
-    newFiles.filter(e => e.status === 'done').map(e => bannerIds.push(e.response.id))
+    newFiles.filter(e => e.status === 'done').map(e => bannerIds.push(Number(e.uid)))
     this.bannerFileList = newFiles
     this.validateForm.setValue({
       ...this.validateForm.value,

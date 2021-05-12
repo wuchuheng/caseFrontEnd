@@ -9,6 +9,7 @@
     [nzFileType]="'image/png,image/jpeg,image/gif'"
     [nzBeforeUpload]="onBeforeUpload"
     (nzChange)="handleChange($event)"
+    (nzFileListChange)="onFilesListChange($event)"
   >
     <div>
       <i nz-icon nzType="plus"></i>

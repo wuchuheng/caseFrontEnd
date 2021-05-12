@@ -1,1 +1,105 @@
-<p>edit works!</p>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id">项目编号</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="id" id="id" [readonly]="true"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="size">应用大小</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="size" id="size" [readonly]="true"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="version">版本号</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="version" id="version" [readonly]="true"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="icon">应用图标</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <app-upload
+        [avatarUrl]="editData.icon.url"
+        (onChange)="onUploadIcon($event)"
+      ></app-upload>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="label">应用名称</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="label" id="label" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="category">分类</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzWarningTip="分类不能为空">
+      <nz-select formControlName="category" id="category">
+        <nz-option
+          *ngFor="let option of options"
+          [nzValue]="option.id"
+          [nzLabel]="option.name"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="icon">封面</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <app-upload
+        [avatarUrl]="editData.cover.url"
+        (onChange)="onUploadCover($event)"
+      ></app-upload>
+      <div class="msg" *ngIf="coverFileId.errors?.required">封面不能为空</div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="bannerFileIds">示例图</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <app-multi-upload
+        [initFileList]="bannerFileList"
+        (nzChange)="onBannerChange($event)"
+      ></app-multi-upload>
+      <div class="msg" *ngIf="bannerFileIds.errors?.required">封面不能为空</div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="remark">备注</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="remark" id="remark" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="desc">说明</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <textarea nz-input formControlName="desc" id="desc"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="detailFileId">详情图</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <app-upload
+        [avatarUrl]="editData.detail.url"
+        (onChange)="onDetailFile($event)"
+      ></app-upload>
+      <div class="msg" *ngIf="detailFileId.errors?.required">详情图不能为空</div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button
+        nz-button
+        nzType="primary"
+      >保存</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

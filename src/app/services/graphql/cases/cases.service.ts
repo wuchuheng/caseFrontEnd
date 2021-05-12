@@ -68,6 +68,8 @@ export class CasesService {
             detail {id url}
             desc
             remark
+            size
+            categoryId
           }
         }
         summary{
@@ -98,5 +100,51 @@ export class CasesService {
     `
 
     return this.graphql.query<GetCaseByIdResType>(graphQl, {id})
+  }
+
+  updateCase(params: GrapqlType.UpdateCaseParamsType): Observable<GrapqlType.CaseType>
+  {
+    const graphql = gql`
+      mutation updateCaseMudation(
+        $id: Int!
+        $label: String!
+        $iconFileId:Int!
+        $coverFileId: Int!
+        $bannerFileIds: [Int]!
+        $desc: String!
+        $remark: String!
+      ) {
+        updateCase(
+          id: $id
+          label: $label
+          iconFileId: $iconFileId
+          coverFileId: $coverFileId
+          bannerFileIds: $bannerFileIds
+          desc: $desc
+          remark: $remark
+        ) {
+          id
+          uid
+          label
+          version
+          size
+          icon {id url}
+          type
+          file {id url}
+          cover {id url}
+          banner {id url}
+          detail {id url}
+          desc
+          remark
+          categoryId
+        }
+      }
+    `
+    return new Observable<GrapqlType.CaseType>(rx => {
+      this.graphql.mutation<GrapqlType.CaseType>(graphql, params).subscribe(res => {
+        res.id = params.id
+        rx.next(res)
+      })
+    })
   }
 }

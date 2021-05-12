@@ -56,7 +56,18 @@ declare namespace GrapqlType {
     banner: FileType[]
     detail: FileType
     desc: string
-    remark: FileType
+    remark: string
+    size: number
+    categoryId: number
+  }
+  export type UpdateCaseParamsType = {
+    id: number
+    label: string
+    iconFileId: number
+    coverFileId: number
+    bannerFileIds: number[]
+    desc: string
+    remark: string
   }
   export type OneCaseResType = {
     label: string

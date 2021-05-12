@@ -71,11 +71,22 @@ export class MultiUploadComponent implements OnInit {
       case 'uploading':
         break;
       case 'done':
-        this.nzChange.emit(info.fileList)
+        const files = info.fileList.map(i => {
+          if (i.status === 'done' && i?.response?.id) {
+            i.uid = i.response.id
+            i.url = i.response.url
+          }
+          return i
+        })
+        this.nzChange.emit(files)
         break;
       case 'error':
         this.msg.error('Network error');
         break;
     }
+  }
+  onFilesListChange(files: NzUploadFile[]): void
+  {
+    this.nzChange.emit(files)
   }
 }

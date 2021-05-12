@@ -123,6 +123,7 @@
 >
   <app-edit
     *ngIf="isVisitEditForm"
-    [EditData]="editData"
+    [editData]="editData"
+    (finished)="onFinished($event)"
   ></app-edit>
 </nz-modal>
