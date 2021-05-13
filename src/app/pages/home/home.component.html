@@ -6,6 +6,7 @@
    [title]="item.label"
    [banner]="item.banner"
    [cover]="item.cover"
+   [fileUrl]="item.file.url"
   ></app-item-render>
   <div *ngIf="pageData.total === 0 " class="empty">
     <img src="assets/svg/empty.svg" />

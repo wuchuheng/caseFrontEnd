@@ -5,21 +5,22 @@
       <button (click)="handleShowDetail()">
         <div> <div> 查看详情 </div> <div class="iconfont icon-right"></div> </div>
       </button>
-      <button class="download">
+      <button class="download" (click)="onDownload()">
         <div> <div> 下载演示 </div> <div class="iconfont icon-right"></div> </div>
       </button>
     </div>
   </div>
   <div class="contentWrapper">
-    <div> <img [src]="cover.url" /> </div>
+    <div> <img [nzSrc]="cover.url" nz-image /> </div>
     <div>
       <div class="desc">{{desc}}</div>
       <div class="showDetail"></div>
     </div>
     <div>
       <img
+        nz-image
         *ngFor="let item of banner"
-        [src]="item.url"
+        [nzSrc]="item.url"
       />
     </div>
   </div>

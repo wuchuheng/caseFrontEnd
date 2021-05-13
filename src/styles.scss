@@ -6,3 +6,11 @@
 
 @import "assets/styles/reset";
 @import "assets/fonts/iconfont";
+
+
+.cdk-drag[cdkdrag] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}

@@ -10,6 +10,7 @@ export class ItemRenderComponent implements OnInit {
   @Input() id!: number
   @Input() desc!: string
   @Input() title!: string
+  @Input() fileUrl!: string
   @Input() banner!: {id: number; url: string}[]
   @Input() cover!: {id: number; url: string}
 
@@ -25,5 +26,8 @@ export class ItemRenderComponent implements OnInit {
     const url = `/cases/${this.id}`
     this.router.navigateByUrl(url)
   }
-
+  onDownload(): void
+  {
+    window.open(this.fileUrl)
+  }
 }

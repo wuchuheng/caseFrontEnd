@@ -17,6 +17,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 registerLocaleData(en);
 
@@ -37,7 +38,8 @@ registerLocaleData(en);
     AdminModule,
     BrowserAnimationsModule,
     FormsModule,
-  ],
+    NzImageModule
+],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
