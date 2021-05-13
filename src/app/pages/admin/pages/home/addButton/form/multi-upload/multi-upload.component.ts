@@ -54,9 +54,9 @@ export class MultiUploadComponent implements OnInit {
         observer.complete();
         return;
       }
-      const isLt2M = file.size! / 1024 / 1024 < 2;
+      const isLt2M = file.size! / 1024 / 1024 < 20;
       if (!isLt2M) {
-        this.msg.error('Image must smaller than 2MB!');
+        this.msg.error('Image must smaller than 20MB!');
         observer.complete();
         return;
       }

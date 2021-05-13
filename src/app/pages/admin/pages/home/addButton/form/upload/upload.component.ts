@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { Observable, Observer } from 'rxjs';
-
+import {environment} from '../../../../../../../../environments/environment.prod';
 
 type EmitType = {
   id: number
@@ -19,6 +19,8 @@ export class UploadComponent implements OnInit {
 
   loading = false;
 
+  apiUrl = environment.apiUrl
+
   constructor(private msg: NzMessageService) {}
 
   ngOnInit(): void {
@@ -32,9 +34,9 @@ export class UploadComponent implements OnInit {
         observer.complete();
         return;
       }
-      const isLt2M = file.size! / 1024 / 1024 < 2;
+      const isLt2M = file.size! / 1024 / 1024 < 20;
       if (!isLt2M) {
-        this.msg.error('Image must smaller than 2MB!');
+        this.msg.error('Image must smaller than 20MB!');
         observer.complete();
         return;
       }

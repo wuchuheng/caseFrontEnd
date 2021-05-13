@@ -12,6 +12,8 @@ export class AddComponent implements OnInit {
   @Output() created: EventEmitter<GrapqlType.CreateCaseResType> = new EventEmitter<GrapqlType.CreateCaseResType>()
   packageInfo!: ApiType.UploadApkResType
 
+  msg!: string
+
   uploadReport = {
     isUpload: false,
     progress: 0
@@ -44,6 +46,7 @@ export class AddComponent implements OnInit {
    */
   onSelectFile(): void
   {
+    this.msg = '上传中...'
     this.resetPackageInfo()
     this.input.nativeElement.value = ''
     this.input.nativeElement.click()
@@ -67,6 +70,9 @@ export class AddComponent implements OnInit {
         case HttpEventType.UploadProgress:
           const total = event.total || 0
           this.uploadReport.progress = Math.round(100 * (event.loaded / total));
+          if (this.uploadReport.progress === 100) {
+            this.msg = '解析中...'
+          }
           break;
         // 上传成功
         case HttpEventType.Response:
