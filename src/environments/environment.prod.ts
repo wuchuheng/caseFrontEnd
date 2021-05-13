@@ -1,7 +1,7 @@
 const env: 'product' | 'dev' = 'product'
 const commons = {
   production: true,
-  iconFontJsUrl: '//at.alicdn.com/t/font_2544358_hxb85yyv7ah.js'
+  iconFontJsUrl: '//at.alicdn.com/t/font_2544358_z57twvak3e8.js'
 }
 export const environment =
   // @ts-ignore

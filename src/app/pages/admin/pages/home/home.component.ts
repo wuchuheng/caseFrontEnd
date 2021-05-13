@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CasesService} from '../../../../services/graphql/cases/cases.service';
 import CaseParamsType = GrapqlType.CaseParamsType;
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {NzIconService} from 'ng-zorro-antd/icon';
+import {environment} from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-home',
@@ -38,8 +40,13 @@ export class HomeComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private caseService: CasesService,
-    private msgService: NzMessageService
-  ) { }
+    private msgService: NzMessageService,
+    private iconService: NzIconService
+  ) {
+    this.iconService.fetchFromIconfont({
+      scriptUrl: environment.iconFontJsUrl
+    })
+  }
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({

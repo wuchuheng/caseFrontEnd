@@ -59,3 +59,17 @@
 .action {
   @apply text-primay;
 }
+
+
+.bannerWrapper {
+  @apply flex;
+}
+
+.actionWrapper {
+  @apply grid grid-cols-3 gap-2
+    w-full
+  ;
+  >i {
+
+  }
+}
