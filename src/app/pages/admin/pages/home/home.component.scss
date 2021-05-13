@@ -1,11 +1,4 @@
-.contentWrapper {
-  @apply m-4
-    grid gap-2 grid-cols-1;
-  >div {
-    @apply bg-white
-    ;
-  }
-}
+@import "../../index";
 .searchWrapper {
   @apply
     w-full

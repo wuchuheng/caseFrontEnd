@@ -4,13 +4,15 @@ import {LoginComponent} from './pages/login/login.component';
 import {HomeComponent} from './pages/home/home.component';
 import {MainComponent} from './layout/main/main.component';
 import {CanActiveateLoginGuard} from './guard/can-activeate-login.guard';
+import {CategoryComponent} from './pages/category/category.component';
 
 const routes: Routes = [
   {path: 'admin',
     component: MainComponent,
     children: [
       {path: '', component: HomeComponent, canActivate: [CanActiveateLoginGuard]},
-      {path: 'home', component: HomeComponent, canActivate: [CanActiveateLoginGuard]}
+      {path: 'home', component: HomeComponent, canActivate: [CanActiveateLoginGuard]},
+      {path: 'category', component: CategoryComponent, canActivate: [CanActiveateLoginGuard]}
     ]},
   {path: 'admin/login', component: LoginComponent},
 ];

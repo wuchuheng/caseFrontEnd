@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NzIconService} from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-collap-icon',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollapIconComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }

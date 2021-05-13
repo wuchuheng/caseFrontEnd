@@ -55,7 +55,8 @@ export class EditComponent implements OnInit {
       remark: [this.editData.remark, Validators.required],
       detailFileId: [this.editData.detail.id, Validators.required]
     });
-    this.categoriesService.getCategories().subscribe(res =>  this.options = res.categories )
+    this.categoriesService.categorySubject.subscribe(res => this.options = res.categories )
+    this.categoriesService.getCategories()
     this.initBannerList()
   }
 

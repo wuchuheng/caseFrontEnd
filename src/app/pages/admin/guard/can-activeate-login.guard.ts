@@ -15,11 +15,6 @@ export class CanActiveateLoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log(state.url)
-
-    // if (this.router.url === '/login' && isValidToken()) {
-    //   return this.router.parseUrl('/admin/home')
-    // }
     if (isValidToken()) {
       return true;
     } else {

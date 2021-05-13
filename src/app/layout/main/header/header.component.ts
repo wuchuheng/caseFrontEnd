@@ -20,10 +20,10 @@ export class HeaderComponent implements OnInit {
   currentCategoryId = 0
 
   ngOnInit(): void {
-    this.fetchCategories()
     this.route.queryParams.subscribe(params => {
       this.currentCategoryId = Number(params.categoryId) || 0
     })
+    this.initCategorySubject()
   }
   onRedirect(categoryId: number): void
   {
@@ -45,11 +45,12 @@ export class HeaderComponent implements OnInit {
     this.caseService.getCase(pageInfo)
   }
 
-  fetchCategories(): void
+  initCategorySubject(): void
   {
-    this.categoriesService.getCategories().subscribe(res => {
-      this.navs = [{id: 0, name: '首页'}, ...res.categories]
+    this.categoriesService.categorySubject.subscribe(res => {
+      this.navs = [{id: 0, name: '全部'}, ...res.categories]
     })
+    this.categoriesService.getCategories()
   }
 
   activeTab(): void

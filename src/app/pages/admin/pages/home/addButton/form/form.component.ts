@@ -80,10 +80,8 @@ export class FormComponent implements OnInit {
       remark: ['', Validators.required],
       detailFileId: [null, Validators.required]
     });
-    this.categoriesService.getCategories().subscribe(res =>  {
-        this.options = res.categories
-      }
-    )
+    this.categoriesService.categorySubject.subscribe(res => this.options = res.categories )
+    this.categoriesService.getCategories()
   }
   get id(): AbstractControl
   {

@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   apiUrl: 'http://127.0.0.1:3000',
-  graphQLUrl: 'http://127.0.0.1:5000/'
+  graphQLUrl: 'http://127.0.0.1:5000/',
+  iconFontJsUrl: '//at.alicdn.com/t/font_2544358_hxb85yyv7ah.js'
 };

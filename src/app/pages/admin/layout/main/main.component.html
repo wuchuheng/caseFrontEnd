@@ -1,23 +1,16 @@
 <nz-layout class="h-screen">
-  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null"
+
+  >
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-submenu nzTitle="User" nzIcon="user">
-        <ul>
-          <li nz-menu-item>Tom</li>
-          <li nz-menu-item>Bill</li>
-          <li nz-menu-item>Alex</li>
-        </ul>
+      <li nz-menu-item [nzSelected]="'/admin/home' == currentPath" (click)="onRedirect('/admin/home')">
+        <i nz-icon [nzIconfont]="'icon-dash-board'"></i>
+        <span>我的应用</span>
       </li>
-      <li nz-submenu nzTitle="Team" nzIcon="team">
-        <ul>
-          <li nz-menu-item>Team 1</li>
-          <li nz-menu-item>Team 2</li>
-        </ul>
-      </li>
-      <li nz-menu-item>
-        <i nz-icon nzType="file"></i>
-        <span>File</span>
+      <li nz-menu-item [nzSelected]="'/admin/category' == currentPath" (click)="onRedirect('/admin/category')">
+        <i nz-icon [nzIconfont]="'icon-category'"></i>
+        <span>分类</span>
       </li>
     </ul>
   </nz-sider>

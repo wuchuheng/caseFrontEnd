@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
     public graphql: GraphqlService,
     private message: NzMessageService,
     private router: Router
-  ) {
-   }
+  ) { }
+
   ngOnInit(): void {}
 
   get username(): AbstractControl

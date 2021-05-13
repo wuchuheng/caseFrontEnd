@@ -1,0 +1,7 @@
+@import "../../index";
+
+.editWrapper {
+  @apply flex flex-col justify-center items-center
+    w-full
+  ;
+}

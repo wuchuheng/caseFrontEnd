@@ -20,10 +20,11 @@ declare namespace GrapqlType {
     name: string
     fileBase64: string
   }
-  export type CategoriesType = {
+  export type CategoryType = {
     id: number
     name: string
-  }[]
+  }
+  export type CategoriesType = CategoryType[]
   export type CreateCaseParamsType = {
     id: number
     label: string

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {GraphqlService} from '../graphql.service';
 import {gql} from '@apollo/client/core';
-import {Subject, Observable, never} from 'rxjs';
+import {Subject, Observable} from 'rxjs';
 import {NzMessageService} from 'ng-zorro-antd/message';
 
 type CaseResType = {cases: GrapqlType.CaseResType; summary: GrapqlType.Summary}
