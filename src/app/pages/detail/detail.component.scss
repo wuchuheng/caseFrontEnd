@@ -1,3 +1,6 @@
+@mixin marginTop {
+  @apply mt-2;
+}
 .main {
   @apply mt-16;
   .headerWrapper {
@@ -43,8 +46,8 @@
 
 .actionWrapper {
   @apply w-full
-    flex justify-end
-    mt-2;
+    flex justify-end;
+    @include marginTop;
     >button:last-child {
       @apply ml-2
       p-2
@@ -67,3 +70,50 @@
     @apply flex justify-center items-center;
   }
 }
+
+.sm {
+  background: #EEF0F3;
+  min-height: 100vh;
+  width: 100vw;
+  @apply flex flex-col;
+  .detail {
+    @apply flex flex-col items-center
+      bg-white
+      rounded
+      p-4
+      mx-2;
+    .sm-icon {
+      @apply h-16 w-16
+        mt-8
+      ;
+    }
+    >h1 {
+      @apply mt-4
+        text-2xl
+      ;
+    }
+    >p {
+      @apply text-gray-400;
+      @include marginTop;
+    }
+    .line {
+      @apply w-full border border-solid border-gray-200
+        mt-4;
+      ;
+    }
+    >h2 {
+      @include marginTop;
+    }
+    .sm-desc {
+      @apply leading-8;
+    }
+    .sm-detal {
+      @include marginTop;
+    }
+  }
+}
+
+.breadcrumb {
+  @apply px-4 my-6;
+}
+

@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {BreakpointObserver} from '@angular/cdk/layout';
+import {ScreenBreakPointService} from '../../../services/screenBreakPoint/screen-break-point.service';
 
 @Component({
   selector: 'app-item-render',
@@ -13,12 +15,19 @@ export class ItemRenderComponent implements OnInit {
   @Input() fileUrl!: string
   @Input() banner!: {id: number; url: string}[]
   @Input() cover!: {id: number; url: string}
+  @Input() icon!: {id: number; url: string}
+
+  device!: ServiceType.DeviceType
 
   constructor(
-    private router: Router
+    private router: Router,
+    private breakpointObserver: BreakpointObserver,
+    private screenBreakPointService: ScreenBreakPointService
   ) { }
 
   ngOnInit(): void {
+    this.device = this.screenBreakPointService.device
+    this.screenBreakPointService.deviceSubject.subscribe(device => this.device = device)
   }
 
   handleShowDetail(): void

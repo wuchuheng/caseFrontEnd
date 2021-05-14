@@ -15,9 +15,29 @@
   </div>
 </div>
 
-<div class="sm">
-    <img src="../../assets/images/caseIcon3@2x.png" />
-    <i nz-icon nzType="menu" nzTheme="outline"
-    (click)="isVisitMenu = true"
-    ></i>
+<div class="sm"g>
+  <img src="../../assets/images/caseIcon3@2x.png" />
+  <i nz-icon nzType="menu" nzTheme="outline"
+     (click)="isVisitMenu = true"
+  ></i>
 </div>
+
+<nz-drawer [nzClosable]="false"
+           [nzVisible]="isVisitMenu"
+           nzPlacement="right"
+           nzTitle="分类列表"
+           (nzOnClose)="isVisitMenu = false"
+>
+  <ng-container *nzDrawerContent>
+    <div class="menuRender" (click)="isVisitMenu = false">
+      <div>
+        <div
+          *ngFor="let item of navs"
+          [class.smActive]="item.id === currentCategoryId"
+          data-device="sm"
+          (click)="onRedirect(item.id)"
+        >{{item.name}}</div>
+      </div>
+    </div>
+  </ng-container>
+</nz-drawer>

@@ -101,3 +101,6 @@ declare namespace ApiType
   }
 }
 
+declare namespace  ServiceType {
+  export type DeviceType = 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+}

@@ -3,6 +3,7 @@ import {CasesService} from '../../services/graphql/cases/cases.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import copy from 'copy-to-clipboard';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {ScreenBreakPointService} from '../../services/screenBreakPoint/screen-break-point.service';
 
 @Component({
   selector: 'app-detail',
@@ -13,14 +14,21 @@ export class DetailComponent implements OnInit {
   case!: GrapqlType.OneCaseResType
   loading = false
 
+  device
+
   constructor(
     private caseService: CasesService,
     private route: ActivatedRoute,
-    private msgService: NzMessageService
-  ) { }
+    private msgService: NzMessageService,
+    private screenBreakPointService: ScreenBreakPointService,
+    private router: Router
+  ) {
+    this.device = screenBreakPointService.device
+  }
 
   ngOnInit(): void
   {
+      this.screenBreakPointService.deviceSubject.subscribe(device => this.device = device )
       const id = Number(this.route.snapshot.paramMap.get('id'))
       this._fetchCaseById(id)
   }
@@ -45,4 +53,9 @@ export class DetailComponent implements OnInit {
   {
     window.open(this.case.file.url)
   }
+  onRedirectRootPath(): void
+  {
+    this.router.navigateByUrl('/')
+  }
 }
+

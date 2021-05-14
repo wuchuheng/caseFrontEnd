@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 
 registerLocaleData(en);
 
@@ -41,7 +43,9 @@ registerLocaleData(en);
     FormsModule,
     NzImageModule,
     NzIconModule,
-    NzModalModule
+    NzModalModule,
+    NzPopoverModule,
+    NzDrawerModule
 ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

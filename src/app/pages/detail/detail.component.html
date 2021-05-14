@@ -1,4 +1,4 @@
-<div class="main" *ngIf="case">
+<div class="main" *ngIf="case && device !== 'sm'">
   <div class="headerWrapper">
     <img [src]="case.icon.url"/>
     <div class="contentWrapper">
@@ -21,4 +21,27 @@
   </div>
 
   <img [src]="case.detail.url" />
+</div>
+
+<div class="sm" *ngIf="case && device === 'sm'">
+  <div class="breadcrumb">
+    <span (click)="onRedirectRootPath()">全部</span> / <span>{{case.label}}</span>
+  </div>
+  <div class="detail">
+    <img class="sm-icon" [src]="case.icon.url" />
+    <h1>{{case.label}}</h1>
+    <p>{{case.remark}}</p>
+    <div class="line"></div>
+    <h2>项目介绍</h2>
+    <p class="sm-desc">{{case.desc}}</p>
+    <img class="sm-detal" [src]="case.detail.url" />
+    <div class="actionWrapper">
+      <button (click)="onCopy()">复制链接
+        <i nz-icon nzType="right" nzTheme="outline"></i>
+      </button>
+      <button (click)="onDownload()">下载演示
+        <i nz-icon nzType="right" nzTheme="outline"></i>
+      </button>
+    </div>
+  </div>
 </div>

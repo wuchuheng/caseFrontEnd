@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="device !== 'sm'" >
   <div class="headerWrapper">
     <div class="title bg-primary h-7 flex justify-center items-center"><div>- {{title}} -</div></div>
     <div class="actionWrapper">
@@ -24,6 +24,27 @@
         *ngFor="let item of banner"
         [nzSrc]="item.url"
       />
+    </div>
+  </div>
+</div>
+
+<div class="sm" *ngIf="device === 'sm'">
+  <div>
+    <div class="iconWrapper">
+      <img [src]="icon.url" />
+    </div>
+    <div class="line"></div>
+    <h2>{{title}}</h2>
+    <p class="line-clamp-3">{{desc}}</p>
+    <div class="actionWrapper">
+      <button (click)="handleShowDetail()">
+        查看详情
+        <i nz-icon nzType="right" nzTheme="outline"></i>
+      </button>
+      <button class="download" (click)="onDownload()">
+         下载演示
+        <i nz-icon nzType="right" nzTheme="outline"></i>
+      </button>
     </div>
   </div>
 </div>

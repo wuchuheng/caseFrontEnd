@@ -1,3 +1,5 @@
+@import "../../../pages/index.styles";
+
 .main {
   @apply bg-primay;
   @apply flex justify-center;
@@ -15,30 +17,29 @@
       @apply grid grid-cols-12 gap-4
       text-white;
       >div {
-        @apply 
+        @apply
           flex justify-center items-center
           h-8
           xl:pb-2
           ;
-          
+
       }
     }
   }
 }
 
 .active {
-  @apply 
+  @apply
    bg-white
    rounded-t-lg
    text-gray-500
   ;
 }
 
-
 /**
   * 响应手机设备
   */
-@media (max-width: 640px) { 
+@media (max-width: $max-width) {
   .main {
     display: none;
   }
@@ -51,7 +52,7 @@
 * 手机以外的设备
 */
 
-@media (min-width: 640px) { 
+@media (min-width: $min-width) {
   .main {
     display: flex;
   }
@@ -72,4 +73,32 @@
   >i {
     @apply text-white;
   }
+}
+
+.menuWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  opacity: .4;
+}
+
+.menuRender {
+  @apply justify-center flex items-center;
+  >div {
+    @apply bg-white
+    w-full
+    p-1
+    grid grid-cols-1 gap-4;
+    >div {
+      @apply py-4 px-12
+        text-xl;
+    }
+  }
+}
+.smActive[data-device="sm"] {
+  @apply text-primay
+    bg-blue-300;
 }
