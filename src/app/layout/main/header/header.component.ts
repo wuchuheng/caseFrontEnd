@@ -10,6 +10,7 @@ import {CasesService} from '../../../services/graphql/cases/cases.service';
 })
 export class HeaderComponent implements OnInit {
   navs: GrapqlType.CategoriesType = []
+  isVisitMenu = false
   constructor(
     private router: Router,
     private categoriesService: CategoryService,

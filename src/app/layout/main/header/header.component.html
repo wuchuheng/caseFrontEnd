@@ -4,11 +4,20 @@
     <div class="nav">
       <div
         *ngFor="let nav of navs"
-        (click)="onRedirect(nav.id)">
-        <span [class.active]="currentCategoryId === nav.id">
+        (click)="onRedirect(nav.id)"
+        [class.active]="nav.id === currentCategoryId"
+      >
+        <div>
           {{nav.name}}
-        </span>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="sm">
+    <img src="../../assets/images/caseIcon3@2x.png" />
+    <i nz-icon nzType="menu" nzTheme="outline"
+    (click)="isVisitMenu = true"
+    ></i>
 </div>

@@ -129,4 +129,10 @@ export class HomeComponent implements OnInit {
     this.iterateId = id
     this.isVisitUploadPackage = true
   }
+
+  cutText(text: string): string
+  {
+    const len = 20
+    return text.substr(0, len) + (text.length > 20 ? '...' : '')
+  }
 }

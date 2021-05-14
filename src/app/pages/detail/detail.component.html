@@ -12,8 +12,12 @@
     </div>
   </div>
   <div class="actionWrapper">
-    <button (click)="onCopy()">复制链接</button>
-    <button (click)="onDownload()">下载演示</button>
+    <button (click)="onCopy()">复制链接
+      <i nz-icon nzType="right" nzTheme="outline"></i>
+    </button>
+    <button (click)="onDownload()">下载演示
+      <i nz-icon nzType="right" nzTheme="outline"></i>
+    </button>
   </div>
 
   <img [src]="case.detail.url" />

@@ -1,29 +1,30 @@
 .main {
-  @apply mt-4;
+  @apply mt-4
+  ;
 }
 .headerWrapper {
   @apply flex justify-between items-center;
   @apply w-full;
   @apply my-1;
   .actionWrapper {
+   @apply flex;
     button:last-child {
       @apply ml-5;
+    }
+    >button:first-child {
     }
     button:last-child {
       @apply text-white;
       @apply bg-primay;
     }
-    button {
+    >button {
       cursor: pointer;
-      @apply h-6 p-1;
+      @apply shadow-lg;
+      @apply p-2;
       @apply border-0;
-      @apply rounded;
+      @apply rounded-2xl;
       @apply text-gray-500;
-      >div {
-        align-items: center;
-        @apply justify-center;
-        @apply flex;
-      }
+      @apply  flex justify-center items-center;
     }
   }
   .title {
@@ -37,8 +38,8 @@
 
 .contentWrapper {
   @apply flex;
-  @apply w-full h-52;
-  @apply py-1;
+  @apply w-full h-56;
+  @apply pt-1 pb-4;
   @apply border-2 border-solid border-gray-200;
   border-left: none;
   border-right: none;
@@ -76,7 +77,8 @@
     @apply h-full;
   }
   .desc {
-    @apply leading-10;
+    @apply
+    leading-8;
     @apply overflow-ellipsis overflow-hidden;
   }
 }
