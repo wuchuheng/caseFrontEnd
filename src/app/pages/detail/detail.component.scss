@@ -45,6 +45,9 @@
 }
 
 .actionWrapper {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
   @apply w-full
     flex justify-end;
     @include marginTop;
@@ -58,10 +61,11 @@
     }
     >button:first-child {
       @apply rounded-2xl
-      shadow-lg
-      text-gray-500
-      p-2
-      ml-2;
+        bg-white
+        shadow-lg
+        text-gray-500
+        p-2
+        ml-2;
     }
     button:focus {
       outline: none;
