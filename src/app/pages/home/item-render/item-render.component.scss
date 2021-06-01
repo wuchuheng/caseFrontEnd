@@ -54,6 +54,9 @@
     width: $divNo3Width;
     @apply flex justify-between;
     @apply h-full;
+    img {
+      width: 20%;
+    }
   }
   .desc {
     @apply

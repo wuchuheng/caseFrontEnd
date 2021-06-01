@@ -1,6 +1,6 @@
 <div class="main">
   <div class="center">
-    <img src="../../assets/images/caseIcon3@2x.png" />
+    <img src="../../assets/images/caseIcon3@2x.png" (click)="onRedirectRoot()" />
     <div class="nav">
       <div
         *ngFor="let nav of navs"
@@ -16,7 +16,9 @@
 </div>
 
 <div class="sm"g>
-  <img src="../../assets/images/caseIcon3@2x.png" />
+  <img src="../../assets/images/caseIcon3@2x.png"
+       (click)="onRedirectRoot()"
+  />
   <i nz-icon nzType="menu" nzTheme="outline"
      (click)="isVisitMenu = true"
   ></i>

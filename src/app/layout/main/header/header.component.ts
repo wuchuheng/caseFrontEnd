@@ -46,6 +46,11 @@ export class HeaderComponent implements OnInit {
     this.caseService.getCase(pageInfo)
   }
 
+  onRedirectRoot(): void
+  {
+    this.router.navigateByUrl('/')
+  }
+
   initCategorySubject(): void
   {
     this.categoriesService.categorySubject.subscribe(res => {
