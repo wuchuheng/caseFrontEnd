@@ -79,7 +79,10 @@ export class HomeComponent implements OnInit {
   onCreate(data: GrapqlType.CreateCaseResType): void
   {
     this.pageInfo.page = 1
-    this.getCase(this.pageInfo)
+    this.caseService.clearnCache().then(() => {
+      this.loading = true
+      this.getCase(this.pageInfo)
+    })
   }
 
   onUpdate(editData: GrapqlType.CaseType): void

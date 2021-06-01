@@ -49,6 +49,11 @@ export class CasesService {
     private msgService: NzMessageService
   ) { }
 
+  clearnCache(): Promise<any>
+  {
+    return this.apollo.client.clearStore()
+  }
+
   create(params: GrapqlType.CreateCaseParamsType): Observable<GrapqlType.CreateCaseResType>
   {
     const graphql = gql`
