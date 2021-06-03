@@ -67,7 +67,7 @@
 
 .sm {
   @apply
-    w-screen h-20
+    w-screen
     grid-cols-1 grid gap-4;
   >div {
     @apply
