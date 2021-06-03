@@ -11,7 +11,8 @@ export class HomeComponent implements OnInit {
 
   pageInfo: GrapqlType.CaseParamsType = {
     page: 1,
-    pageSize: 12,
+    // todo 默认100个， 比较好的要使用懒加载
+    pageSize: 100,
     keyword: '',
     categoryId: 0
   }
